@@ -23,13 +23,18 @@ public class MandelbrotSet {
         for(int x = 0; x < width;x++){
             for(int y = 0; y < height; y++){
                 calculateMandelbrotSet(x, y); // Calculate for each pixel
+
             }
         }
 
     }
 
 
-    public static void calculateMandelbrotSet(float xVal, float yVal){
+    public int calculateMandelbrotSet(float xVal, float yVal){
+        float a = (xVal / width) * 4 -2;
+        float b = (yVal / height) * 4 -2;
 
+
+        return -1;
     }
 }
