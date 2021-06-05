@@ -32,10 +32,11 @@ public class MandelbrotSet {
     public void calculateMandelbrotSet(float xVal, float yVal){
         float a = xVal/width*4-2;
         float b = yVal/height*4-2;
+        int maxIterations = 100;
 
         float z = 0;
 
-        for(int iterations = 0; iterations<100; iterations++){
+        for(int iterations = 0; iterations<maxIterations; iterations++){
             float newA = a*a - b*b;
             float newB = 2*a*b;
 
