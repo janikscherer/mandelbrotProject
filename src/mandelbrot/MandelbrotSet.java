@@ -8,8 +8,8 @@ import java.io.File;
 import java.io.IOException;
 
 public class MandelbrotSet {
-    private int height = 500;
-    private int width = 500;
+    private int height = 1200;
+    private int width = 1200;
 
 
     public MandelbrotSet() {
@@ -21,7 +21,7 @@ public class MandelbrotSet {
         frame.setBackground(Color.black);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.getContentPane().setLayout(new GridLayout(1, 1));
-        BufferedImage image = createImage(500, 500);
+        BufferedImage image = createImage(width, height);
         ImagePanel imagePanel = new ImagePanel(image);
         frame.getContentPane().add(imagePanel);
         frame.pack();
@@ -46,7 +46,7 @@ public class MandelbrotSet {
             final float originalA = a;
             final float originalB = b;
 
-            int maxIterations = 100;
+            int maxIterations = 90;
 
             float z = 0;
 
@@ -58,16 +58,32 @@ public class MandelbrotSet {
                 a= newA + originalA;
                 b= newB + originalB;
 
-                if(Math.abs(a+b)>16){
+                if(Math.abs(a*a+b*b+2*a*b)>10000000){
                     break;
                 }
             }
 
-            if(iterations == maxIterations-85){
+            //Version 1 (Schwarz gefuellt ohne Abstufung)
+            /*
+            if(iterations == maxIterations) {
                 return 0;
-            }
-            else return 255;
+            } else return 255;
+            */
 
+            //Version 2 (Mitte gefuellt außen abgestuft)
+            if(iterations == maxIterations) {
+                return 0;
+            } else if(iterations == maxIterations-80) {
+                return 180;
+            } else if(iterations == maxIterations-79) {
+                return 135;
+            } else if(iterations == maxIterations-78) {
+                return 90;
+            } else if(iterations == maxIterations-77) {
+                return 45;
+            } else if(iterations <= maxIterations-76) {
+                return 0;
+            } else return 255;
 
     }
 
