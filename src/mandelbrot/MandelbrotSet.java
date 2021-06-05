@@ -42,6 +42,12 @@ public class MandelbrotSet {
         for(int iterations = 0; iterations<maxIterations; iterations++){
             float newA = a*a - b*b;
             float newB = 2*a*b;
+            a= newA + originalA;
+            b= newB + originalB;
+
+            if(Math.abs(a+b)>16){
+                break;
+            }
 
         }
 
