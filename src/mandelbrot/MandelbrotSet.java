@@ -21,12 +21,15 @@ public class MandelbrotSet {
         frame.setResizable(false);
 
         for(int x = 0; x < width;x++){
-
+            for(int y = 0; y < height; y++){
+                calculateMandelbrotSet(x, y); // Calculate for each pixel
+            }
         }
 
     }
 
+
     public static void calculateMandelbrotSet(float xVal, float yVal){
-        
+
     }
 }
