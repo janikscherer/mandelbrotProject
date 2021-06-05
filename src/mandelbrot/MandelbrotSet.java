@@ -39,7 +39,8 @@ public class MandelbrotSet {
 
         float z = 0;
 
-        for(int iterations = 0; iterations<maxIterations; iterations++){
+        int iterations = 0;
+        for(; iterations<maxIterations; iterations++){
             float newA = a*a - b*b;
             float newB = 2*a*b;
             a= newA + originalA;
@@ -48,9 +49,12 @@ public class MandelbrotSet {
             if(Math.abs(a+b)>16){
                 break;
             }
-
         }
 
-        return 0;
+        if(iterations == maxIterations-1){
+            return 0;
+        }
+        else return 255;
+
     }
 }
