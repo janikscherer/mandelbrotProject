@@ -33,6 +33,13 @@ public class MandelbrotSet {
         float a = xVal/width*4-2;
         float b = yVal/height*4-2;
 
+        float z = 0;
+
+        for(int iterations = 0; iterations<100; iterations++){
+            float newA = a*a - b*b;
+            float newB = 2*a*b;
+
+        }
 
     }
 }
