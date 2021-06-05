@@ -29,9 +29,12 @@ public class MandelbrotSet {
     }
 
 
-    public void calculateMandelbrotSet(float xVal, float yVal){
+    public int calculateMandelbrotSet(float xVal, float yVal){
         float a = xVal/width*4-2;
         float b = yVal/height*4-2;
+        final float originalA = a;
+        final float originalB = b;
+
         int maxIterations = 100;
 
         float z = 0;
@@ -42,5 +45,6 @@ public class MandelbrotSet {
 
         }
 
+        return 0;
     }
 }
