@@ -1,12 +1,18 @@
 package mandelbrot;
 
+import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
 
 public class MandelbrotSet {
     private int height = 500;
     private int width = 500;
     public MandelbrotSet(){
+        File f = null;
+        BufferedImage image = new BufferedImage(width, height, BufferedImage.TYPE_INT_ARGB);
         JFrame frame = new JFrame();
         frame.setSize(500, 500);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -22,10 +28,18 @@ public class MandelbrotSet {
 
         for(int x = 0; x < width;x++){
             for(int y = 0; y < height; y++){
-                calculateMandelbrotSet(x, y); // Calculate for each pixel
+                int color = calculateMandelbrotSet(x, y); // Calculate for each pixel
+                image.setRGB(x, y, color);
             }
         }
 
+        try{
+            f= new File("mandelbrot.png");
+            ImageIO.write(image, "png", f);
+        }
+        catch (IOException ex){
+            ex.printStackTrace();
+        }
     }
 
 
