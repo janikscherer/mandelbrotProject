@@ -19,8 +19,8 @@ public class MandelbrotSet {
         updateImage();
     }
 
-    public void increaseScale(){
-        scale++;
+    public void decreaseScale(){
+        scale--;
         updateImage();
     }
 

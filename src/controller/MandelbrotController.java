@@ -10,7 +10,7 @@ public class MandelbrotController {
     public MandelbrotController() {
         MandelbrotSet myMandelbrot = new MandelbrotSet(height, width);
         Gui myGui = new Gui(myMandelbrot.createAndShowGUI());
-        myGui.getZoomInButton().addActionListener(x -> {myMandelbrot.increaseScale();
+        myGui.getZoomInButton().addActionListener(x -> {myMandelbrot.decreaseScale();
         });
     }
 }
