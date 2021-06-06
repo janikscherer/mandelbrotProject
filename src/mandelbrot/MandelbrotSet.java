@@ -71,7 +71,7 @@ public class MandelbrotSet {
             } else return 255;
             */
 
-            //Version 2 (Mitte gefuellt außen abgestuft)
+/*            //Version 2 (Mitte gefuellt außen abgestuft)
             if (iterations == maxIterations) {
                 return 0;
             } else if (iterations == maxIterations - 80) {
@@ -84,10 +84,9 @@ public class MandelbrotSet {
                 return 45;
             } else if (iterations <= maxIterations - 76) {
                 return 0;
-            } else return 255;
+            } else return 255;*/
 
-        /*
-            //Version 3 (Mitte gefuellt außen abgestuft in unterschiedlichen Farben)
+/*            //Version 3 (Mitte gefuellt außen abgestuft in unterschiedlichen Farben)
             if (iterations > 9*maxIterations/10) return Color.BLACK.getRGB();
             else if (iterations > 8*maxIterations/10)return Color.GRAY.getRGB();
             else if (iterations > 7*maxIterations/10) return Color.MAGENTA.getRGB();
@@ -97,10 +96,15 @@ public class MandelbrotSet {
             else if (iterations > 3*maxIterations/10) return  Color.YELLOW.getRGB();
             else if (iterations > 2*maxIterations/10) return Color.ORANGE.getRGB();
             else if (iterations > 1*maxIterations/10) return Color.RED.getRGB();
-            else return 0;
+            else return 0;*/
+
+            // Version 4 (color gradient: Keine klare Abstufung mehr sondern Farbverlauf)
+            if(iterations == maxIterations) {
+                return 0;
+            }
+            else return  (iterations*(Integer.MAX_VALUE/(maxIterations)));
 
 
-         */
     }
 
 
