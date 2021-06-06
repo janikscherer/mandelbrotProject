@@ -1,32 +1,22 @@
-package mandelbrot;
+package model;
 
-import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.image.BufferedImage;
-import java.io.File;
-import java.io.IOException;
 
 public class MandelbrotSet {
-    private int height = 1200;
-    private int width = 1200;
+    private int height;
+    private int width;
 
 
-    public MandelbrotSet() {
-
+    public MandelbrotSet(int height, int width) {
+        this.height = height;
+        this.width = width;
     }
 
-    public void createAndShowGUI() {
-        JFrame frame = new JFrame();
-        frame.setBackground(Color.black);
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.getContentPane().setLayout(new GridLayout(1, 1));
+    public JPanel createAndShowGUI() {
         BufferedImage image = createImage(width, height);
-        ImagePanel imagePanel = new ImagePanel(image);
-        frame.getContentPane().add(imagePanel);
-        frame.pack();
-        frame.setResizable(false);
-        frame.setVisible(true);
+        return new ImagePanel(image);
     }
 
     public BufferedImage createImage(int width, int height) {
