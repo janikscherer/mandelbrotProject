@@ -7,33 +7,45 @@ import java.awt.image.BufferedImage;
 public class MandelbrotSet {
     private int height;
     private int width;
+    private float scale;
+    private BufferedImage mandelbrotImage;
 
 
     public MandelbrotSet(int height, int width) {
         this.height = height;
         this.width = width;
+        scale = 4;
+        mandelbrotImage = createImage(width, height);
+        updateImage();
+    }
+
+    public void increaseScale(){
+        scale++;
+        updateImage();
     }
 
     public JPanel createAndShowGUI() {
-        BufferedImage image = createImage(width, height);
-        return new ImagePanel(image);
+        return new ImagePanel(mandelbrotImage);
     }
 
     public BufferedImage createImage(int width, int height) {
         BufferedImage image = new BufferedImage(width, height, BufferedImage.TYPE_INT_RGB);
+        return image;
+    }
+
+    private void updateImage(){
         for (int x = 0; x < width; x++) {
             for (int y = 0; y < height; y++) {
                 int color = calculateMandelbrotSet(x, y); // Calculate for each pixel
-                image.setRGB(x, y, color);
+                mandelbrotImage.setRGB(x, y, color);
             }
         }
-        return image;
     }
 
 
     public int calculateMandelbrotSet(float xVal, float yVal) {
-        float a = xVal / width * 4 - 2;
-        float b = yVal / height * 4 - 2;
+        float a = xVal / width * scale - scale/2;
+        float b = yVal / height * scale - scale/2;
         final float originalA = a;
         final float originalB = b;
         int maxIterations = 90;

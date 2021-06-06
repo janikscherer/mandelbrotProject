@@ -1,7 +1,7 @@
 package controller;
 
 import model.MandelbrotSet;
-import view.gui;
+import view.Gui;
 
 public class MandelbrotController {
     private int height = 1200;
@@ -9,6 +9,8 @@ public class MandelbrotController {
 
     public MandelbrotController() {
         MandelbrotSet myMandelbrot = new MandelbrotSet(height, width);
-        new gui(myMandelbrot.createAndShowGUI());
+        Gui myGui = new Gui(myMandelbrot.createAndShowGUI());
+        myGui.getZoomInButton().addActionListener(x -> {myMandelbrot.increaseScale();
+        });
     }
 }
