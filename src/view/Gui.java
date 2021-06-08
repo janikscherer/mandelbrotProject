@@ -34,12 +34,17 @@ public class Gui {
         GridBagConstraints myGBC = new GridBagConstraints();
 
         zoomInButton = new JButton("Zoom in");
+        zoomInButton.setPreferredSize(new Dimension(120,40));
         zoomOutButton = new JButton("Zoom out");
+        zoomOutButton.setPreferredSize(new Dimension(120,40));
         moveUpButton = new JButton("Move up");
+        moveUpButton.setPreferredSize(new Dimension(120,20));
         moveRightButton = new JButton("Move right");
+        moveRightButton.setPreferredSize(new Dimension(120,20));
         moveLeftButton = new JButton("Move left");
+        moveLeftButton.setPreferredSize(new Dimension(120,20));
         moveDownButton = new JButton("Move down");
-
+        moveDownButton.setPreferredSize(new Dimension(120,20));
 
         myGBC.ipady = 25;
         myGBC.gridx = 1;

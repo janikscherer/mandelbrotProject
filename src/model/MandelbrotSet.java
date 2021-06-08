@@ -79,7 +79,7 @@ public class MandelbrotSet {
         float b = yVal / height * scale - scale/2 + yOffset;
         final float originalA = a;
         final float originalB = b;
-        int maxIterations = 90;
+        int maxIterations = 150;
 
         int iterations = 0;
         for (; iterations < maxIterations; iterations++) {
@@ -89,14 +89,17 @@ public class MandelbrotSet {
             a = newA + originalA;
             b = newB + originalB;
 
-            if (Math.abs(a * a + b * b + 2 * a * b) > 10000000) {
+            if (Math.abs(a+b) > 16) {
                 break;
             }
         }
 
         if (iterations == maxIterations) {
             return 0;
-            } else return (iterations * (Integer.MAX_VALUE / (maxIterations)));
+            } else {
+            double color = 1.0*iterations/maxIterations;
+            Color myColor = Color.getHSBColor((float) (color), 1, 1);
+            return myColor.getRGB();}
     }
 
 
