@@ -30,19 +30,38 @@ public class Gui {
 
     private JPanel createSidePanel(){
         JPanel sidePanel = new JPanel();
-        sidePanel.setLayout(new GridLayout(0, 1));
+        sidePanel.setLayout(new GridBagLayout());
+        GridBagConstraints myGBC = new GridBagConstraints();
+
         zoomInButton = new JButton("Zoom in");
         zoomOutButton = new JButton("Zoom out");
+        moveUpButton = new JButton("Move up");
         moveRightButton = new JButton("Move right");
         moveLeftButton = new JButton("Move left");
-        moveUpButton = new JButton("Move up");
         moveDownButton = new JButton("Move down");
-        sidePanel.add(zoomInButton);
-        sidePanel.add(zoomOutButton);
-        sidePanel.add(moveRightButton);
-        sidePanel.add(moveLeftButton);
-        sidePanel.add(moveUpButton);
-        sidePanel.add(moveDownButton);
+
+
+        myGBC.ipady = 25;
+        myGBC.gridx = 1;
+        myGBC.gridy = 0;
+        sidePanel.add(zoomInButton, myGBC);
+        myGBC.gridy++;
+        sidePanel.add(zoomOutButton, myGBC);
+
+        myGBC.insets = new Insets(25, 0,0,0);
+        myGBC.gridy++;
+        myGBC.ipady = myGBC.ipady*2;
+        sidePanel.add(moveUpButton, myGBC);
+        myGBC.insets = new Insets(0, 0,0,0);
+
+        myGBC.gridy++;
+        myGBC.gridx = 2;
+        sidePanel.add(moveRightButton, myGBC);
+        myGBC.gridx = 0;
+        sidePanel.add(moveLeftButton, myGBC);
+        myGBC.gridy++;
+        myGBC.gridx = 1;
+        sidePanel.add(moveDownButton, myGBC);
         return sidePanel;
     }
 
