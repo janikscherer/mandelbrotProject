@@ -12,5 +12,9 @@ public class MandelbrotController {
         Gui myGui = new Gui(myMandelbrot.createAndShowGUI());
         myGui.getZoomInButton().addActionListener(x -> { myMandelbrot.decreaseScale(); });
         myGui.getZoomOutButton().addActionListener(x -> { myMandelbrot.increaseScale(); });
+        myGui.getMoveRightButton().addActionListener(x -> { myMandelbrot.moveRight(); });
+        myGui.getMoveLeftButton().addActionListener(x -> { myMandelbrot.moveLeft(); });
+        myGui.getMoveUpButton().addActionListener(x -> { myMandelbrot.moveUp(); });
+        myGui.getMoveDownButton().addActionListener(x -> { myMandelbrot.moveDown(); });
     }
 }

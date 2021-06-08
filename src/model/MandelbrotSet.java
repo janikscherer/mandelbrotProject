@@ -8,6 +8,8 @@ public class MandelbrotSet {
     private int height;
     private int width;
     private float scale;
+    private float yOffset;
+    private float xOffset;
     private BufferedImage mandelbrotImage;
     private ImagePanel mandelbrotPanel;
 
@@ -16,6 +18,8 @@ public class MandelbrotSet {
         this.height = height;
         this.width = width;
         scale = 4;
+        yOffset = 0;
+        xOffset = 0;
         mandelbrotImage = createImage(width, height);
         mandelbrotPanel = new ImagePanel(mandelbrotImage);
         updateImage();
@@ -28,6 +32,26 @@ public class MandelbrotSet {
 
     public void increaseScale(){
         scale=scale*2;
+        updateImage();
+    }
+
+    public void moveRight(){
+        xOffset += scale/8;
+        updateImage();
+    }
+
+    public void moveLeft(){
+        xOffset -= scale/8;
+        updateImage();
+    }
+
+    public void moveUp(){
+        yOffset -= scale/8;
+        updateImage();
+    }
+
+    public void moveDown(){
+        yOffset += scale/8;
         updateImage();
     }
 
@@ -51,8 +75,8 @@ public class MandelbrotSet {
 
 
     public int calculateMandelbrotSet(float xVal, float yVal) {
-        float a = xVal / width * scale - scale/2;
-        float b = yVal / height * scale - scale/2;
+        float a = xVal / width * scale - scale/2 + xOffset;
+        float b = yVal / height * scale - scale/2 + yOffset;
         final float originalA = a;
         final float originalB = b;
         int maxIterations = 90;
