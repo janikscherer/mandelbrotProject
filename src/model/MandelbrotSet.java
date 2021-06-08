@@ -9,6 +9,7 @@ public class MandelbrotSet {
     private int width;
     private float scale;
     private BufferedImage mandelbrotImage;
+    private ImagePanel mandelbrotPanel;
 
 
     public MandelbrotSet(int height, int width) {
@@ -16,17 +17,22 @@ public class MandelbrotSet {
         this.width = width;
         scale = 4;
         mandelbrotImage = createImage(width, height);
+        mandelbrotPanel = new ImagePanel(mandelbrotImage);
         updateImage();
     }
 
     public void decreaseScale(){
-        scale--;
+        scale=scale/2;
+        updateImage();
+    }
+
+    public void increaseScale(){
+        scale=scale*2;
         updateImage();
     }
 
     public JPanel createAndShowGUI() {
-        return new ImagePanel(mandelbrotImage);
-    }
+        return mandelbrotPanel;   }
 
     public BufferedImage createImage(int width, int height) {
         BufferedImage image = new BufferedImage(width, height, BufferedImage.TYPE_INT_RGB);
@@ -40,6 +46,7 @@ public class MandelbrotSet {
                 mandelbrotImage.setRGB(x, y, color);
             }
         }
+        mandelbrotPanel.updateUI();
     }
 
 
@@ -65,7 +72,7 @@ public class MandelbrotSet {
 
         if (iterations == maxIterations) {
             return 0;
-        } else return (iterations * (Integer.MAX_VALUE / (maxIterations)));
+            } else return (iterations * (Integer.MAX_VALUE / (maxIterations)));
     }
 
 
