@@ -5,11 +5,14 @@ import java.awt.*;
 import java.awt.image.BufferedImage;
 
 public class MandelbrotSet {
+
     private int height;
     private int width;
+
     private float scale;
     private float yOffset;
     private float xOffset;
+
     private BufferedImage mandelbrotImage;
     private ImagePanel mandelbrotPanel;
 
@@ -24,39 +27,6 @@ public class MandelbrotSet {
         mandelbrotPanel = new ImagePanel(mandelbrotImage);
         updateImage();
     }
-
-    public void decreaseScale(){
-        scale=scale/2;
-        updateImage();
-    }
-
-    public void increaseScale(){
-        scale=scale*2;
-        updateImage();
-    }
-
-    public void moveRight(){
-        xOffset += scale/8;
-        updateImage();
-    }
-
-    public void moveLeft(){
-        xOffset -= scale/8;
-        updateImage();
-    }
-
-    public void moveUp(){
-        yOffset -= scale/8;
-        updateImage();
-    }
-
-    public void moveDown(){
-        yOffset += scale/8;
-        updateImage();
-    }
-
-    public JPanel createAndShowGUI() {
-        return mandelbrotPanel;   }
 
     public BufferedImage createImage(int width, int height) {
         BufferedImage image = new BufferedImage(width, height, BufferedImage.TYPE_INT_RGB);
@@ -124,6 +94,39 @@ public class MandelbrotSet {
             g.drawImage(image, 0, 0, null);
         }
     }
+
+    public void decreaseScale(){
+        scale=scale/2;
+        updateImage();
+    }
+
+    public void increaseScale(){
+        scale=scale*2;
+        updateImage();
+    }
+
+    public void moveRight(){
+        xOffset += scale/8;
+        updateImage();
+    }
+
+    public void moveLeft(){
+        xOffset -= scale/8;
+        updateImage();
+    }
+
+    public void moveUp(){
+        yOffset -= scale/8;
+        updateImage();
+    }
+
+    public void moveDown(){
+        yOffset += scale/8;
+        updateImage();
+    }
+
+    public JPanel createAndShowGUI() {
+        return mandelbrotPanel;   }
 
 }
 
