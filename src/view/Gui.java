@@ -17,8 +17,6 @@ public class Gui {
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.getContentPane().setLayout(new GridBagLayout());
 
-
-
         frame.getContentPane().add(mandelbrotPanel);
         GridBagConstraints myGBC = new GridBagConstraints();
         myGBC.gridy = 1;
@@ -30,7 +28,14 @@ public class Gui {
 
     private JPanel createSidePanel(){
         JPanel sidePanel = new JPanel();
-        sidePanel.setLayout(new GridBagLayout());
+        sidePanel.setLayout(new BorderLayout());
+        sidePanel.add(createMoveButtonsPanel(), BorderLayout.CENTER);
+        return sidePanel;
+    }
+
+    private JPanel createMoveButtonsPanel(){
+        JPanel moveButtonsPanel = new JPanel();
+        moveButtonsPanel.setLayout(new GridBagLayout());
         GridBagConstraints myGBC = new GridBagConstraints();
 
         zoomInButton = new JButton("Zoom in");
@@ -49,25 +54,25 @@ public class Gui {
         myGBC.ipady = 25;
         myGBC.gridx = 1;
         myGBC.gridy = 0;
-        sidePanel.add(zoomInButton, myGBC);
+        moveButtonsPanel.add(zoomInButton, myGBC);
         myGBC.gridy++;
-        sidePanel.add(zoomOutButton, myGBC);
+        moveButtonsPanel.add(zoomOutButton, myGBC);
 
         myGBC.insets = new Insets(25, 0,0,0);
         myGBC.gridy++;
         myGBC.ipady = myGBC.ipady*2;
-        sidePanel.add(moveUpButton, myGBC);
+        moveButtonsPanel.add(moveUpButton, myGBC);
         myGBC.insets = new Insets(0, 0,0,0);
 
         myGBC.gridy++;
         myGBC.gridx = 2;
-        sidePanel.add(moveRightButton, myGBC);
+        moveButtonsPanel.add(moveRightButton, myGBC);
         myGBC.gridx = 0;
-        sidePanel.add(moveLeftButton, myGBC);
+        moveButtonsPanel.add(moveLeftButton, myGBC);
         myGBC.gridy++;
         myGBC.gridx = 1;
-        sidePanel.add(moveDownButton, myGBC);
-        return sidePanel;
+        moveButtonsPanel.add(moveDownButton, myGBC);
+        return moveButtonsPanel;
     }
 
     public JButton getZoomInButton(){

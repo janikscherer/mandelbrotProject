@@ -43,6 +43,17 @@ public class MandelbrotSet {
         mandelbrotPanel.updateUI();
     }
 
+    public int getHeight() {
+        return height;
+    }
+
+    public float getyOffset() {
+        return yOffset;
+    }
+
+    public float getxOffset() {
+        return xOffset;
+    }
 
     public int calculateMandelbrotSet(float xVal, float yVal) {
         float a = xVal / width * scale - scale/2 + xOffset;
