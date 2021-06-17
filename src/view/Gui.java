@@ -4,14 +4,10 @@ import javax.swing.*;
 import java.awt.*;
 
 public class Gui {
-    JButton zoomInButton;
-    JButton zoomOutButton;
-    JButton moveRightButton;
-    JButton moveLeftButton;
-    JButton moveUpButton;
-    JButton moveDownButton;
+    GuiElements myGuiElements;
 
     public Gui(JPanel mandelbrotPanel){
+        myGuiElements = new GuiElements();
         JFrame frame = new JFrame();
         frame.setBackground(Color.black);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -30,6 +26,7 @@ public class Gui {
         JPanel sidePanel = new JPanel();
         sidePanel.setLayout(new BorderLayout());
         sidePanel.add(createMoveButtonsPanel(), BorderLayout.CENTER);
+        sidePanel.add(new ColorSettingsPanel(), BorderLayout.NORTH);
         return sidePanel;
     }
 
@@ -38,18 +35,29 @@ public class Gui {
         moveButtonsPanel.setLayout(new GridBagLayout());
         GridBagConstraints myGBC = new GridBagConstraints();
 
-        zoomInButton = new JButton("Zoom in");
+        JButton zoomInButton = new JButton("Zoom in");
         zoomInButton.setPreferredSize(new Dimension(120,40));
-        zoomOutButton = new JButton("Zoom out");
+        myGuiElements.addButton(zoomInButton);
+
+        JButton zoomOutButton = new JButton("Zoom out");
         zoomOutButton.setPreferredSize(new Dimension(120,40));
-        moveUpButton = new JButton("Move up");
+        myGuiElements.addButton(zoomOutButton);
+
+        JButton moveUpButton = new JButton("Move up");
         moveUpButton.setPreferredSize(new Dimension(120,20));
-        moveRightButton = new JButton("Move right");
-        moveRightButton.setPreferredSize(new Dimension(120,20));
-        moveLeftButton = new JButton("Move left");
+        myGuiElements.addButton(moveUpButton);
+
+        JButton moveLeftButton = new JButton("Move left");
         moveLeftButton.setPreferredSize(new Dimension(120,20));
-        moveDownButton = new JButton("Move down");
+        myGuiElements.addButton(moveLeftButton);
+
+        JButton moveRightButton = new JButton("Move right");
+        moveRightButton.setPreferredSize(new Dimension(120,20));
+        myGuiElements.addButton(moveRightButton);
+
+        JButton moveDownButton = new JButton("Move down");
         moveDownButton.setPreferredSize(new Dimension(120,20));
+        myGuiElements.addButton(moveDownButton);
 
         myGBC.ipady = 25;
         myGBC.gridx = 1;
@@ -75,25 +83,7 @@ public class Gui {
         return moveButtonsPanel;
     }
 
-    public JButton getZoomInButton(){
-        return zoomInButton;
-    }
-    public JButton getZoomOutButton(){
-        return zoomOutButton; }
-
-    public JButton getMoveLeftButton() {
-        return moveLeftButton;
-    }
-
-    public JButton getMoveUpButton() {
-        return moveUpButton;
-    }
-
-    public JButton getMoveDownButton() {
-        return moveDownButton;
-    }
-
-    public JButton getMoveRightButton() {
-        return moveRightButton;
+    public GuiElements getGuiElements(){
+        return myGuiElements;
     }
 }
