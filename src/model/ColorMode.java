@@ -23,4 +23,13 @@ public enum ColorMode { HSB_LINEAR("HSB Linear"), HSB_LOGARITHMIC("HSB Logarithm
         allColorModesArr = allColorModes.toArray(allColorModesArr);
         return allColorModesArr;
     }
+
+    public static ColorMode colorModeFromString(String input){
+        for(ColorMode thisColorMode : ColorMode.values()){
+            if(thisColorMode.toString().equals(input)){
+                return thisColorMode;
+            }
+        }
+        return null;
+    }
 }

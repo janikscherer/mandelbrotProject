@@ -5,6 +5,8 @@ import model.MandelbrotSet;
 import view.Gui;
 import view.GuiElements;
 
+import javax.swing.*;
+
 public class MandelbrotController {
     private int height = 1200;
     private int width = 1200;
@@ -28,5 +30,7 @@ public class MandelbrotController {
         myGuiElements.getButtons().get(4).addActionListener(x -> { myMandelbrot.moveRight(); });
         myGuiElements.getButtons().get(5).addActionListener(x -> { myMandelbrot.moveDown(); });
         myGuiElements.getSliders().get(0).addChangeListener(x -> { myMandelbrot.setColorOffset(myGuiElements.getSliders().get(0).getValue());});
+        JComboBox<String> colorModeJComboBox = myGuiElements.getjComboBoxes().get(0);
+        colorModeJComboBox.addActionListener(x -> {myMandelbrot.changeColorMode(colorModeJComboBox.getItemAt(colorModeJComboBox.getSelectedIndex()));});
     }
 }

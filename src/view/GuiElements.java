@@ -7,7 +7,7 @@ import java.util.List;
 public class GuiElements {
     private List<JSlider> sliders;
     private List<JButton> buttons;
-    private List<JComboBox> jComboBoxes;
+    private List<JComboBox<String>> jComboBoxes;
 
     public GuiElements(){
         buttons = new ArrayList<>();
@@ -23,7 +23,7 @@ public class GuiElements {
         sliders.add(givenSlider);
     }
 
-    public void addJComboBox(JComboBox givenJComboBox){
+    public void addJComboBox(JComboBox<String> givenJComboBox){
         jComboBoxes.add(givenJComboBox);
     }
     public List<JSlider> getSliders() {
@@ -38,7 +38,7 @@ public class GuiElements {
         return buttons;
     }
 
-    public List<JComboBox> getjComboBoxes() {
+    public List<JComboBox<String>> getjComboBoxes() {
         return jComboBoxes;
     }
 }

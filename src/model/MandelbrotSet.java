@@ -90,6 +90,11 @@ public class MandelbrotSet {
         updateImage();
     }
 
+    public void changeColorMode(String colorMode){
+        myColorEncoder.changeColorMode(colorMode);
+        updateImage();
+    }
+
 
 
 
