@@ -48,7 +48,7 @@ public class ColorEncoder {
     }
 
     public int encodeColorRGB(int iterations, int maxIterations){
-        return (iterations * (16777215 / maxIterations*2));
+        return ((iterations) * (16777215 / maxIterations*(colorOffset+1)));
     }
 
     public void setColorOffset(int colorOffset) {
