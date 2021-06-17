@@ -4,10 +4,15 @@ import java.awt.*;
 
 public class ColorEncoder {
     private int colorOffset;
+    private ColorMode currentMode;
     public ColorEncoder(){
         colorOffset = 0;
     }
     public int encodeColor(int iterations, int maxIterations){
+        return encodeColorHsbLinear(iterations, maxIterations);
+    }
+
+    public int encodeColorHsbLinear(int iterations, int maxIterations){
         double color = 1.0*iterations/maxIterations;
         color += colorOffset/255.0;
         Color myColor = Color.getHSBColor((float) (color), 1, 1);

@@ -5,10 +5,12 @@ import java.awt.*;
 
 public class ColorSettingsPanel extends JPanel {
     GuiElements currentElements;
-    public ColorSettingsPanel(GuiElements currentElements){
+    public ColorSettingsPanel(GuiElements currentElements, String[] comboBoxString){
         this.currentElements = currentElements;
         setLayout(new GridLayout(0, 1));
-        add(new JComboBox<String>());
+        JComboBox<String> colorModeBox = new JComboBox<>(comboBoxString);
+        currentElements.addJComboBox(colorModeBox);
+        add(colorModeBox);
         add(createSliderPanel());
     }
 

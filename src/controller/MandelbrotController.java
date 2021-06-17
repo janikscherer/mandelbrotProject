@@ -1,5 +1,6 @@
 package controller;
 
+import model.ColorMode;
 import model.MandelbrotSet;
 import view.Gui;
 import view.GuiElements;
@@ -12,10 +13,12 @@ public class MandelbrotController {
 
     public MandelbrotController() {
         myMandelbrot = new MandelbrotSet(height, width);
-        Gui myGui = new Gui(myMandelbrot.createAndShowGUI());
+        //Ziel: Gui Strings für Combobox übergeben
+        Gui myGui = new Gui(myMandelbrot.createAndShowGUI(), ColorMode.allColorModes());
         myGuiElements = myGui.getGuiElements();
         initializeElements();
     }
+
 
     private void initializeElements(){
         myGuiElements.getButtons().get(0).addActionListener(x -> { myMandelbrot.decreaseScale(); });

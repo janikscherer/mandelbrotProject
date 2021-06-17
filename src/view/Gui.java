@@ -6,7 +6,7 @@ import java.awt.*;
 public class Gui {
     GuiElements myGuiElements;
 
-    public Gui(JPanel mandelbrotPanel){
+    public Gui(JPanel mandelbrotPanel, String[] comboBoxString){
         myGuiElements = new GuiElements();
         JFrame frame = new JFrame();
         frame.setBackground(Color.black);
@@ -16,17 +16,17 @@ public class Gui {
         frame.getContentPane().add(mandelbrotPanel);
         GridBagConstraints myGBC = new GridBagConstraints();
         myGBC.gridy = 1;
-        frame.getContentPane().add(createSidePanel());
+        frame.getContentPane().add(createSidePanel(comboBoxString));
         frame.pack();
         frame.setResizable(false);
         frame.setVisible(true);
     }
 
-    private JPanel createSidePanel(){
+    private JPanel createSidePanel(String[] comboBoxString){
         JPanel sidePanel = new JPanel();
         sidePanel.setLayout(new BorderLayout());
         sidePanel.add(createMoveButtonsPanel(), BorderLayout.CENTER);
-        sidePanel.add(new ColorSettingsPanel(myGuiElements), BorderLayout.NORTH);
+        sidePanel.add(new ColorSettingsPanel(myGuiElements, comboBoxString), BorderLayout.NORTH);
         return sidePanel;
     }
 
