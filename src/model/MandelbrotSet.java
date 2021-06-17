@@ -16,8 +16,11 @@ public class MandelbrotSet {
     private BufferedImage mandelbrotImage;
     private ImagePanel mandelbrotPanel;
 
+    private ColorEncoder myColorEncoder;
+
 
     public MandelbrotSet(int height, int width) {
+        myColorEncoder = new ColorEncoder();
         this.height = height;
         this.width = width;
         scale = 4;
@@ -56,8 +59,8 @@ public class MandelbrotSet {
     }
 
     public int calculateMandelbrotSet(float xVal, float yVal) {
-        float a = xVal / width * scale - scale/2 + xOffset;
-        float b = yVal / height * scale - scale/2 + yOffset;
+        float a = xVal / width * scale - scale / 2 + xOffset;
+        float b = yVal / height * scale - scale / 2 + yOffset;
         final float originalA = a;
         final float originalB = b;
         int maxIterations = 150;
@@ -70,18 +73,24 @@ public class MandelbrotSet {
             a = newA + originalA;
             b = newB + originalB;
 
-            if (Math.abs(a+b) > 16) {
+            if (Math.abs(a + b) > 16) {
                 break;
             }
         }
 
         if (iterations == maxIterations) {
             return 0;
-            } else {
-            double color = 1.0*iterations/maxIterations;
-            Color myColor = Color.getHSBColor((float) (color), 1, 1);
-            return myColor.getRGB();}
+        } else {
+            return myColorEncoder.encodeColor(iterations, maxIterations);
+        }
     }
+
+    public void setColorOffset(int value){
+        myColorEncoder.setColorOffset(value);
+        updateImage();
+    }
+
+
 
 
     static class ImagePanel extends JPanel {

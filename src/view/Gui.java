@@ -26,7 +26,7 @@ public class Gui {
         JPanel sidePanel = new JPanel();
         sidePanel.setLayout(new BorderLayout());
         sidePanel.add(createMoveButtonsPanel(), BorderLayout.CENTER);
-        sidePanel.add(new ColorSettingsPanel(), BorderLayout.NORTH);
+        sidePanel.add(new ColorSettingsPanel(myGuiElements), BorderLayout.NORTH);
         return sidePanel;
     }
 

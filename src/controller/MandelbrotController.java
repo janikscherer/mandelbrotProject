@@ -24,5 +24,6 @@ public class MandelbrotController {
         myGuiElements.getButtons().get(3).addActionListener(x -> { myMandelbrot.moveLeft(); });
         myGuiElements.getButtons().get(4).addActionListener(x -> { myMandelbrot.moveRight(); });
         myGuiElements.getButtons().get(5).addActionListener(x -> { myMandelbrot.moveDown(); });
+        myGuiElements.getSliders().get(0).addChangeListener(x -> { myMandelbrot.setColorOffset(myGuiElements.getSliders().get(0).getValue());});
     }
 }
