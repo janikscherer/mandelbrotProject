@@ -10,8 +10,9 @@ public class MandelbrotSet {
     private int width;
 
     private float scale;
-    private float yOffset;
     private float xOffset;
+    private float yOffset;
+
 
     private BufferedImage mandelbrotImage;
     private ImagePanel mandelbrotPanel;
@@ -24,8 +25,8 @@ public class MandelbrotSet {
         this.height = height;
         this.width = width;
         scale = 4;
-        yOffset = 0;
         xOffset = 0;
+        yOffset = 0;
         mandelbrotImage = createImage(width, height);
         mandelbrotPanel = new ImagePanel(mandelbrotImage);
         updateImage();
