@@ -46,18 +46,6 @@ public class MandelbrotSet {
         mandelbrotPanel.updateUI();
     }
 
-    public int getHeight() {
-        return height;
-    }
-
-    public float getyOffset() {
-        return yOffset;
-    }
-
-    public float getxOffset() {
-        return xOffset;
-    }
-
     public int calculateMandelbrotSet(float xVal, float yVal) {
         float a = xVal / width * scale - scale / 2 + xOffset;
         float b = yVal / height * scale - scale / 2 + yOffset;
@@ -73,7 +61,7 @@ public class MandelbrotSet {
             a = newA + originalA;
             b = newB + originalB;
 
-            if (Math.abs(a + b) > 16) {
+            if (Math.abs(a + b) > Integer.MAX_VALUE) {
                 break;
             }
         }
@@ -96,6 +84,14 @@ public class MandelbrotSet {
     }
 
 
+
+/*    private int getRGBColorValue(int colorScheme, int iterations, int maxIterations) {
+        int colorValue = 0;
+        switch (colorScheme) {
+            case 0: double color = 1.0*iterations/maxIterations;
+                Color myColor = Color.getHSBColor((float) (color), 1, 1);
+        }
+    }*/
 
 
     static class ImagePanel extends JPanel {

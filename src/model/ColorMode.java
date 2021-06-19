@@ -3,7 +3,7 @@ package model;
 import java.util.ArrayList;
 import java.util.List;
 
-public enum ColorMode { HSB_LINEAR("HSB Linear"), HSB_LOGARITHMIC("HSB Logarithmic"), RGB("RGB");
+public enum ColorMode { HSB_LINEAR("HSB Linear"), HSB_LOGARITHMIC("HSB Logarithmic"), RGB("RGB"), RGB_SQRT("RGB Squareroot");
     private String name;
     ColorMode(String name){
         this.name = name;

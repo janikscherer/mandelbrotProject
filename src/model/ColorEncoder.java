@@ -17,6 +17,8 @@ public class ColorEncoder {
                 return encodeColorHsbLogarithmic(iterations, maxIterations);
             case RGB:
                 return encodeColorRGB(iterations, maxIterations);
+            case RGB_SQRT:
+                return encodeColorRGBSQRT(iterations, maxIterations);
             default:
                 return 0;
         }
@@ -49,6 +51,12 @@ public class ColorEncoder {
 
     public int encodeColorRGB(int iterations, int maxIterations){
         return ((iterations) * (16777215 / maxIterations*(colorOffset+1)));
+    }
+
+    private int encodeColorRGBSQRT(int iterations, int maxIterations) {
+        double color = Math.sqrt(iterations)/Math.sqrt(maxIterations);
+        color *= colorOffset/255.0*16777215;
+        return (int) color;
     }
 
     public void setColorOffset(int colorOffset) {
