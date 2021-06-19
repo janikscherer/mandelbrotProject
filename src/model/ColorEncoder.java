@@ -55,7 +55,7 @@ public class ColorEncoder {
 
     private int encodeColorRGBSQRT(int iterations, int maxIterations) {
         double color = Math.sqrt(iterations)/Math.sqrt(maxIterations);
-        color *= colorOffset/255.0*16777215;
+        color *= (colorOffset+1)/256.0*16777215;
         return (int) color;
     }
 
