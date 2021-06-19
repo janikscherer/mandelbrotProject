@@ -5,6 +5,7 @@ import java.awt.*;
 
 public class Gui {
     GuiElements myGuiElements;
+    ColorSettingsPanel myColorSettingsPanel;
 
     public Gui(JPanel mandelbrotPanel, String[] comboBoxString){
         myGuiElements = new GuiElements();
@@ -27,7 +28,8 @@ public class Gui {
         JPanel sidePanel = new JPanel();
         sidePanel.setLayout(new BorderLayout());
         sidePanel.add(createMoveButtonsPanel(), BorderLayout.CENTER);
-        sidePanel.add(new ColorSettingsPanel(myGuiElements, comboBoxString), BorderLayout.NORTH);
+        myColorSettingsPanel = new ColorSettingsPanel(myGuiElements, comboBoxString);
+        sidePanel.add(myColorSettingsPanel, BorderLayout.NORTH);
         return sidePanel;
     }
 
@@ -82,6 +84,10 @@ public class Gui {
         myGBC.gridx = 1;
         moveButtonsPanel.add(moveDownButton, myGBC);
         return moveButtonsPanel;
+    }
+
+    public ColorSettingsPanel getMyColorSettingsPanel() {
+        return myColorSettingsPanel;
     }
 
     public GuiElements getGuiElements(){

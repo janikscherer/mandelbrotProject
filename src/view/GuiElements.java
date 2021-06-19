@@ -2,16 +2,17 @@ package view;
 
 import javax.swing.*;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 public class GuiElements {
-    private List<JSlider> sliders;
+    private HashMap<String, JSlider> sliders;
     private List<JButton> buttons;
     private List<JComboBox<String>> jComboBoxes;
 
     public GuiElements(){
         buttons = new ArrayList<>();
-        sliders = new ArrayList<>();
+        sliders = new HashMap<>();
         jComboBoxes = new ArrayList<>();
     }
 
@@ -19,15 +20,15 @@ public class GuiElements {
         buttons.add(givenButton);
     }
 
-    public void addSlider(JSlider givenSlider){
-        sliders.add(givenSlider);
+    public void addSlider(String sliderName, JSlider givenSlider){
+        sliders.put(sliderName, givenSlider);
     }
 
     public void addJComboBox(JComboBox<String> givenJComboBox){
         jComboBoxes.add(givenJComboBox);
     }
-    public List<JSlider> getSliders() {
-        return sliders;
+    public JSlider getSlider(String sliderName) {
+        return sliders.get(sliderName);
     }
 
     /**
