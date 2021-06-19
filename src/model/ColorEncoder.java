@@ -59,7 +59,19 @@ public class ColorEncoder {
         return (int) color;
     }
 
+
+    public void setCurrentMode(ColorMode currentMode) {
+        this.currentMode = currentMode;
+    }
     public void setColorOffset(int colorOffset) {
         this.colorOffset = colorOffset;
+    }
+
+    public int getColorOffset() {
+        return colorOffset;
+    }
+
+    public ColorMode getCurrentMode() {
+        return currentMode;
     }
 }

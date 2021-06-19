@@ -84,15 +84,18 @@ public class MandelbrotSet {
         updateImage();
     }
 
+    public PositionAndSettings savePositionAndSettings(){
+        return new PositionAndSettings(scale, xOffset, yOffset, myColorEncoder.getCurrentMode(), myColorEncoder.getColorOffset());
+    }
 
-
-/*    private int getRGBColorValue(int colorScheme, int iterations, int maxIterations) {
-        int colorValue = 0;
-        switch (colorScheme) {
-            case 0: double color = 1.0*iterations/maxIterations;
-                Color myColor = Color.getHSBColor((float) (color), 1, 1);
-        }
-    }*/
+    public void loadPositionAndSettings(PositionAndSettings myPositionAndSettings){
+        scale = myPositionAndSettings.getMyScale();
+        xOffset = myPositionAndSettings.getMyXOffset();
+        yOffset = myPositionAndSettings.getMyYOffset();
+        myColorEncoder.setCurrentMode(myPositionAndSettings.getMyColorMode());
+        myColorEncoder.setColorOffset(myPositionAndSettings.getMyColorOffset());
+        updateImage();
+    }
 
 
     static class ImagePanel extends JPanel {
