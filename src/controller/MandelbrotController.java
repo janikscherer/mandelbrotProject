@@ -8,8 +8,8 @@ import view.GuiElements;
 import javax.swing.*;
 
 public class MandelbrotController {
-    private int height = 1440;
-    private int width = 1440;
+    private int height = 1080;
+    private int width = 1080;
     private GuiElements myGuiElements;
     private MandelbrotSet myMandelbrot;
 

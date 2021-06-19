@@ -20,6 +20,7 @@ public class Gui {
         frame.pack();
         frame.setResizable(false);
         frame.setVisible(true);
+        frame.setLocationRelativeTo(null);
     }
 
     private JPanel createSidePanel(String[] comboBoxString){
