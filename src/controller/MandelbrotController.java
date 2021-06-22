@@ -3,7 +3,7 @@ package controller;
 import model.ColorMode;
 import model.MandelbrotSet;
 import view.ColorSettingsPanel;
-import view.Gui;
+import view.MandelbrotGuiFrame;
 import view.GuiElements;
 
 import javax.swing.*;
@@ -13,13 +13,13 @@ public class MandelbrotController {
     private int width = 1080;
     private GuiElements myGuiElements;
     private MandelbrotSet myMandelbrot;
-    private Gui myGui;
+    private MandelbrotGuiFrame myMandelbrotGuiFrame;
 
     public MandelbrotController() {
         myMandelbrot = new MandelbrotSet(height, width);
         //Ziel: Gui Strings für Combobox übergeben
-        myGui = new Gui(myMandelbrot.createAndShowGUI(), ColorMode.allColorModes());
-        myGuiElements = myGui.getGuiElements();
+        myMandelbrotGuiFrame = new MandelbrotGuiFrame(myMandelbrot.createAndShowGUI(), ColorMode.allColorModes());
+        myGuiElements = myMandelbrotGuiFrame.getGuiElements();
         initializeElements();
     }
 
@@ -31,7 +31,7 @@ public class MandelbrotController {
         myGuiElements.getButtons().get(3).addActionListener(x -> { myMandelbrot.moveLeft(); });
         myGuiElements.getButtons().get(4).addActionListener(x -> { myMandelbrot.moveRight(); });
         myGuiElements.getButtons().get(5).addActionListener(x -> { myMandelbrot.moveDown(); });
-        ColorSettingsPanel myColorSettingsPanel = myGui.getMyColorSettingsPanel();
+        ColorSettingsPanel myColorSettingsPanel = myMandelbrotGuiFrame.getMyColorSettingsPanel();
         myColorSettingsPanel.getColorValSlider().addChangeListener(x -> { myMandelbrot.setColorOffset(myColorSettingsPanel.getColorValSlider().getValue());});
         JComboBox<String> colorModeJComboBox = myGuiElements.getjComboBoxes().get(0);
         colorModeJComboBox.addActionListener(x -> {myMandelbrot.changeColorMode(colorModeJComboBox.getItemAt(colorModeJComboBox.getSelectedIndex()));});

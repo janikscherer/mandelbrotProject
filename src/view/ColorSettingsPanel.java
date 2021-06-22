@@ -20,7 +20,6 @@ public class ColorSettingsPanel extends JPanel {
         JPanel sliderPanel = new JPanel(new GridLayout(0, 1));
         sliderPanel.add(new JLabel("Color Offset"));
         colorValSlider = new JSlider(JSlider.HORIZONTAL, 0, 255, 0);
-        currentElements.addSlider("colorValSlider", colorValSlider);
         sliderPanel.add(colorValSlider);
         return sliderPanel;
     }

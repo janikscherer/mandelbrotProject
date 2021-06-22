@@ -3,25 +3,24 @@ package view;
 import javax.swing.*;
 import java.awt.*;
 
-public class Gui {
+public class MandelbrotGuiFrame extends JFrame{
     GuiElements myGuiElements;
     ColorSettingsPanel myColorSettingsPanel;
 
-    public Gui(JPanel mandelbrotPanel, String[] comboBoxString){
+    public MandelbrotGuiFrame(JPanel mandelbrotPanel, String[] comboBoxString){
         myGuiElements = new GuiElements();
-        JFrame frame = new JFrame();
-        frame.setBackground(Color.black);
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.getContentPane().setLayout(new GridBagLayout());
+        setBackground(Color.black);
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        getContentPane().setLayout(new GridBagLayout());
 
-        frame.getContentPane().add(mandelbrotPanel);
+        getContentPane().add(mandelbrotPanel);
         GridBagConstraints myGBC = new GridBagConstraints();
         myGBC.gridy = 1;
-        frame.getContentPane().add(createSidePanel(comboBoxString));
-        frame.pack();
-        frame.setResizable(false);
-        frame.setVisible(true);
-        frame.setLocationRelativeTo(null);
+        getContentPane().add(createSidePanel(comboBoxString));
+        pack();
+        setResizable(false);
+        setVisible(true);
+        setLocationRelativeTo(null);
     }
 
     private JPanel createSidePanel(String[] comboBoxString){
