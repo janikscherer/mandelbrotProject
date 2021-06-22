@@ -84,7 +84,7 @@ public class MandelbrotSet {
         updateImage();
     }
 
-    public PositionAndSettings savePositionAndSettings(){
+    public PositionAndSettings getPositionAndSettings(){
         return new PositionAndSettings(scale, xOffset, yOffset, myColorEncoder.getCurrentMode(), myColorEncoder.getColorOffset());
     }
 

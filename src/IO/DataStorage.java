@@ -1,8 +1,10 @@
 package IO;
 
+import model.ColorMode;
 import model.PositionAndSettings;
 
 import java.io.*;
+import java.util.Scanner;
 
 public class DataStorage {
     private final String delimiter;
@@ -23,6 +25,24 @@ public class DataStorage {
             System.out.println(e.getMessage());
 
         }
+    }
 
+    public PositionAndSettings readPositionAndSettings(int indexInList){
+        try(Scanner scanner = new Scanner(new BufferedReader(new FileReader("positionAndSettings.txt")))){
+            scanner.useDelimiter(delimiter);
+            for(int i = 0; i<indexInList; i++){
+                scanner.nextLine();
+            }
+            float scale = scanner.nextFloat();
+            float xOffset = scanner.nextFloat();
+            float yOffset = scanner.nextFloat();
+            ColorMode colorMode = ColorMode.colorModeFromString(scanner.next());
+            int colorOffset = scanner.nextInt();
+            return new PositionAndSettings(scale, xOffset, yOffset, colorMode, colorOffset);
+        }
+        catch (IOException e){
+            System.out.println(e.getMessage());
+        }
+        return null;
     }
 }

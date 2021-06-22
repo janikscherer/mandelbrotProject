@@ -3,6 +3,7 @@ package controller;
 import IO.DataStorage;
 import model.ColorMode;
 import model.MandelbrotSet;
+import model.PositionAndSettings;
 import view.ColorSettingsPanel;
 import view.DataStoragePanel;
 import view.MandelbrotGuiFrame;
@@ -16,9 +17,11 @@ public class MandelbrotController {
     private MandelbrotSet myMandelbrot;
     private MandelbrotGuiFrame mandelbrotGuiFrame;
     private DataStorage dataStorage;
+    DefaultListModel<String> listModel;
 
     public MandelbrotController() {
         myMandelbrot = new MandelbrotSet(height, width);
+        listModel= new DefaultListModel<>();
         mandelbrotGuiFrame = new MandelbrotGuiFrame(myMandelbrot.createAndShowGUI(), ColorMode.allColorModes());
         dataStorage = new DataStorage();
         initializeElements();
@@ -39,6 +42,19 @@ public class MandelbrotController {
         colorModeJComboBox.addActionListener(x -> {myMandelbrot.changeColorMode(colorModeJComboBox.getItemAt(colorModeJComboBox.getSelectedIndex()));});
 
         DataStoragePanel dataStoragePanel = mandelbrotGuiFrame.getDataStoragePanel();
-        dataStoragePanel.getSaveButton().addActionListener(x -> {dataStorage.writePositionAndSettings(myMandelbrot.savePositionAndSettings());});
+
+
+        dataStoragePanel.getList().setModel(listModel);
+        dataStoragePanel.getSaveButton().addActionListener(x -> {
+            dataStorage.writePositionAndSettings(myMandelbrot.getPositionAndSettings());
+            String nameForPositionAndSettings = JOptionPane.showInputDialog(mandelbrotGuiFrame,"Enter Name");
+            listModel.addElement(nameForPositionAndSettings);
+        });
+
+        dataStoragePanel.getLoadButton().addActionListener(x ->{
+            int index = dataStoragePanel.getList().getSelectedIndex();
+            PositionAndSettings positionAndSettings = dataStorage.readPositionAndSettings(index);
+            myMandelbrot.loadPositionAndSettings(positionAndSettings);
+        });
     }
 }
