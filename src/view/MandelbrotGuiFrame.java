@@ -27,11 +27,14 @@ public class MandelbrotGuiFrame extends JFrame{
     private JPanel createSidePanel(String[] comboBoxString){
         JPanel sidePanel = new JPanel();
         sidePanel.setLayout(new BorderLayout());
+
         sidePanel.add(moveButtonsPanel = new MoveButtonsPanel(), BorderLayout.CENTER);
         myColorSettingsPanel = new ColorSettingsPanel(comboBoxString);
         sidePanel.add(myColorSettingsPanel, BorderLayout.NORTH);
+
         dataStoragePanel = new DataStoragePanel();
         sidePanel.add(dataStoragePanel, BorderLayout.SOUTH);
+
         return sidePanel;
     }
 
@@ -47,6 +50,4 @@ public class MandelbrotGuiFrame extends JFrame{
     public MoveButtonsPanel getMoveButtonsPanel(){
         return moveButtonsPanel;
     }
-
-
 }

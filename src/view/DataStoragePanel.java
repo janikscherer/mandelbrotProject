@@ -17,21 +17,25 @@ public class DataStoragePanel extends JPanel {
         list = new JList<>();
         list.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
         JScrollPane listscrollpane = new JScrollPane(list);
+        listscrollpane.setPreferredSize(new Dimension(120,400));
         this.add(listscrollpane, BorderLayout.CENTER);
 
         JPanel buttonPanel = new JPanel();
         buttonPanel.setLayout(new FlowLayout());
 
         saveButton = new JButton("Save");
+        saveButton.setPreferredSize(new Dimension(120, 70));
         buttonPanel.add(saveButton);
 
         loadButton = new JButton("Load");
+        loadButton.setPreferredSize(new Dimension(120, 70));
         buttonPanel.add(loadButton);
 
         removeButton = new JButton("Remove");
+        removeButton.setPreferredSize(new Dimension(120, 70));
         buttonPanel.add(removeButton);
 
-        this.add(buttonPanel);
+        this.add(buttonPanel, BorderLayout.SOUTH);
     }
 
     public JList<String> getList() {
