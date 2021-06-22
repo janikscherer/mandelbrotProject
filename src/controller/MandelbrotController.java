@@ -25,12 +25,13 @@ public class MandelbrotController {
 
 
     private void initializeElements(){
-        myGuiElements.getButtons().get(0).addActionListener(x -> { myMandelbrot.decreaseScale(); });
-        myGuiElements.getButtons().get(1).addActionListener(x -> { myMandelbrot.increaseScale(); });
-        myGuiElements.getButtons().get(2).addActionListener(x -> { myMandelbrot.moveUp(); });
-        myGuiElements.getButtons().get(3).addActionListener(x -> { myMandelbrot.moveLeft(); });
-        myGuiElements.getButtons().get(4).addActionListener(x -> { myMandelbrot.moveRight(); });
-        myGuiElements.getButtons().get(5).addActionListener(x -> { myMandelbrot.moveDown(); });
+        myMandelbrotGuiFrame.getZoomInButton().addActionListener(x -> { myMandelbrot.decreaseScale(); });
+        myMandelbrotGuiFrame.getZoomOutButton().addActionListener(x -> { myMandelbrot.increaseScale(); });
+        myMandelbrotGuiFrame.getMoveUpButton().addActionListener(x -> { myMandelbrot.moveUp(); });
+        myMandelbrotGuiFrame.getMoveLeftButton().addActionListener(x -> { myMandelbrot.moveLeft(); });
+        myMandelbrotGuiFrame.getMoveRightButton().addActionListener(x -> { myMandelbrot.moveRight(); });
+        myMandelbrotGuiFrame.getMoveDownButton().addActionListener(x -> { myMandelbrot.moveDown(); });
+
         ColorSettingsPanel myColorSettingsPanel = myMandelbrotGuiFrame.getMyColorSettingsPanel();
         myColorSettingsPanel.getColorValSlider().addChangeListener(x -> { myMandelbrot.setColorOffset(myColorSettingsPanel.getColorValSlider().getValue());});
         JComboBox<String> colorModeJComboBox = myGuiElements.getjComboBoxes().get(0);

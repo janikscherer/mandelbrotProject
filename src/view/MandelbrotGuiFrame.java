@@ -4,8 +4,14 @@ import javax.swing.*;
 import java.awt.*;
 
 public class MandelbrotGuiFrame extends JFrame{
-    GuiElements myGuiElements;
-    ColorSettingsPanel myColorSettingsPanel;
+    private GuiElements myGuiElements;
+    private ColorSettingsPanel myColorSettingsPanel;
+    private JButton zoomInButton;
+    private JButton zoomOutButton;
+    private JButton moveUpButton;
+    private JButton moveLeftButton;
+    private JButton moveRightButton;
+    private JButton moveDownButton;
 
     public MandelbrotGuiFrame(JPanel mandelbrotPanel, String[] comboBoxString){
         myGuiElements = new GuiElements();
@@ -37,29 +43,23 @@ public class MandelbrotGuiFrame extends JFrame{
         moveButtonsPanel.setLayout(new GridBagLayout());
         GridBagConstraints myGBC = new GridBagConstraints();
 
-        JButton zoomInButton = new JButton("Zoom in");
+        zoomInButton = new JButton("Zoom in");
         zoomInButton.setPreferredSize(new Dimension(120,40));
-        myGuiElements.addButton(zoomInButton);
 
-        JButton zoomOutButton = new JButton("Zoom out");
+        zoomOutButton = new JButton("Zoom out");
         zoomOutButton.setPreferredSize(new Dimension(120,40));
-        myGuiElements.addButton(zoomOutButton);
 
-        JButton moveUpButton = new JButton("Move up");
+        moveUpButton = new JButton("Move up");
         moveUpButton.setPreferredSize(new Dimension(120,20));
-        myGuiElements.addButton(moveUpButton);
 
-        JButton moveLeftButton = new JButton("Move left");
+        moveLeftButton = new JButton("Move left");
         moveLeftButton.setPreferredSize(new Dimension(120,20));
-        myGuiElements.addButton(moveLeftButton);
 
-        JButton moveRightButton = new JButton("Move right");
+        moveRightButton = new JButton("Move right");
         moveRightButton.setPreferredSize(new Dimension(120,20));
-        myGuiElements.addButton(moveRightButton);
 
-        JButton moveDownButton = new JButton("Move down");
+        moveDownButton = new JButton("Move down");
         moveDownButton.setPreferredSize(new Dimension(120,20));
-        myGuiElements.addButton(moveDownButton);
 
         myGBC.ipady = 25;
         myGBC.gridx = 1;
@@ -91,5 +91,29 @@ public class MandelbrotGuiFrame extends JFrame{
 
     public GuiElements getGuiElements(){
         return myGuiElements;
+    }
+
+    public JButton getZoomInButton() {
+        return zoomInButton;
+    }
+
+    public JButton getZoomOutButton() {
+        return zoomOutButton;
+    }
+
+    public JButton getMoveUpButton() {
+        return moveUpButton;
+    }
+
+    public JButton getMoveLeftButton() {
+        return moveLeftButton;
+    }
+
+    public JButton getMoveRightButton() {
+        return moveRightButton;
+    }
+
+    public JButton getMoveDownButton() {
+        return moveDownButton;
     }
 }
