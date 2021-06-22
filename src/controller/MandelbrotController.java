@@ -4,14 +4,12 @@ import model.ColorMode;
 import model.MandelbrotSet;
 import view.ColorSettingsPanel;
 import view.MandelbrotGuiFrame;
-import view.GuiElements;
 
 import javax.swing.*;
 
 public class MandelbrotController {
     private int height = 1080;
     private int width = 1080;
-    private GuiElements myGuiElements;
     private MandelbrotSet myMandelbrot;
     private MandelbrotGuiFrame myMandelbrotGuiFrame;
 
@@ -19,7 +17,6 @@ public class MandelbrotController {
         myMandelbrot = new MandelbrotSet(height, width);
         //Ziel: Gui Strings für Combobox übergeben
         myMandelbrotGuiFrame = new MandelbrotGuiFrame(myMandelbrot.createAndShowGUI(), ColorMode.allColorModes());
-        myGuiElements = myMandelbrotGuiFrame.getGuiElements();
         initializeElements();
     }
 
@@ -34,7 +31,7 @@ public class MandelbrotController {
 
         ColorSettingsPanel myColorSettingsPanel = myMandelbrotGuiFrame.getMyColorSettingsPanel();
         myColorSettingsPanel.getColorValSlider().addChangeListener(x -> { myMandelbrot.setColorOffset(myColorSettingsPanel.getColorValSlider().getValue());});
-        JComboBox<String> colorModeJComboBox = myGuiElements.getjComboBoxes().get(0);
+        JComboBox<String> colorModeJComboBox = myColorSettingsPanel.getColorModeBox();
         colorModeJComboBox.addActionListener(x -> {myMandelbrot.changeColorMode(colorModeJComboBox.getItemAt(colorModeJComboBox.getSelectedIndex()));});
     }
 }
