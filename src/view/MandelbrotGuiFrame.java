@@ -6,6 +6,7 @@ import java.awt.*;
 public class MandelbrotGuiFrame extends JFrame{
     private GuiElements myGuiElements;
     private ColorSettingsPanel myColorSettingsPanel;
+    private DataStoragePanel dataStoragePanel;
     private JButton zoomInButton;
     private JButton zoomOutButton;
     private JButton moveUpButton;
@@ -17,12 +18,16 @@ public class MandelbrotGuiFrame extends JFrame{
         myGuiElements = new GuiElements();
         setBackground(Color.black);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        getContentPane().setLayout(new GridBagLayout());
+        this.setLayout(new GridBagLayout());
 
-        getContentPane().add(mandelbrotPanel);
+        this.add(mandelbrotPanel);
         GridBagConstraints myGBC = new GridBagConstraints();
         myGBC.gridy = 1;
-        getContentPane().add(createSidePanel(comboBoxString));
+        this.add(createSidePanel(comboBoxString));
+
+        dataStoragePanel = new DataStoragePanel();
+        this.add(dataStoragePanel);
+
         pack();
         setResizable(false);
         setVisible(true);
@@ -87,6 +92,10 @@ public class MandelbrotGuiFrame extends JFrame{
 
     public ColorSettingsPanel getMyColorSettingsPanel() {
         return myColorSettingsPanel;
+    }
+
+    public DataStoragePanel getDataStoragePanel() {
+        return dataStoragePanel;
     }
 
     public GuiElements getGuiElements(){
