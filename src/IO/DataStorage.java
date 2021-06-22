@@ -11,7 +11,7 @@ public class DataStorage {
     }
 
     public void writePositionAndSettings(PositionAndSettings positionAndSettings){
-        try(PrintWriter printWriter = new PrintWriter(new FileOutputStream(new File("persons.txt"),true));){
+        try(PrintWriter printWriter = new PrintWriter(new FileOutputStream(new File("positionAndSettings.txt"),true));){
             printWriter.print(positionAndSettings.getMyScale() + delimiter);
             printWriter.print(positionAndSettings.getMyXOffset() + delimiter);
             printWriter.print(positionAndSettings.getMyYOffset() + delimiter);
