@@ -33,7 +33,7 @@ public class MandelbrotGuiFrame extends JFrame{
         sidePanel.add(myColorSettingsPanel, BorderLayout.NORTH);
 
         dataStoragePanel = new DataStoragePanel();
-        sidePanel.add(dataStoragePanel, BorderLayout.SOUTH);
+        sidePanel.add(dataStoragePanel, BorderLayout.PAGE_END);
 
         return sidePanel;
     }
