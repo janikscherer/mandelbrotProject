@@ -23,9 +23,6 @@ public class MandelbrotGuiFrame extends JFrame{
         myGBC.gridy = 1;
         this.add(createSidePanel(comboBoxString));
 
-        dataStoragePanel = new DataStoragePanel();
-        this.add(dataStoragePanel);
-
         pack();
         setResizable(false);
         setVisible(true);
@@ -38,6 +35,8 @@ public class MandelbrotGuiFrame extends JFrame{
         sidePanel.add(createMoveButtonsPanel(), BorderLayout.CENTER);
         myColorSettingsPanel = new ColorSettingsPanel(comboBoxString);
         sidePanel.add(myColorSettingsPanel, BorderLayout.NORTH);
+        dataStoragePanel = new DataStoragePanel();
+        sidePanel.add(dataStoragePanel, BorderLayout.SOUTH);
         return sidePanel;
     }
 
