@@ -4,6 +4,7 @@ import model.ColorMode;
 import model.MandelbrotSet;
 import view.ColorSettingsPanel;
 import view.MandelbrotGuiFrame;
+import view.MoveButtonsPanel;
 
 import javax.swing.*;
 
@@ -11,25 +12,25 @@ public class MandelbrotController {
     private int height = 1080;
     private int width = 1080;
     private MandelbrotSet myMandelbrot;
-    private MandelbrotGuiFrame myMandelbrotGuiFrame;
+    private MandelbrotGuiFrame mandelbrotGuiFrame;
 
     public MandelbrotController() {
         myMandelbrot = new MandelbrotSet(height, width);
-        //Ziel: Gui Strings für Combobox übergeben
-        myMandelbrotGuiFrame = new MandelbrotGuiFrame(myMandelbrot.createAndShowGUI(), ColorMode.allColorModes());
+        mandelbrotGuiFrame = new MandelbrotGuiFrame(myMandelbrot.createAndShowGUI(), ColorMode.allColorModes());
         initializeElements();
     }
 
 
     private void initializeElements(){
-        myMandelbrotGuiFrame.getZoomInButton().addActionListener(x -> { myMandelbrot.decreaseScale(); });
-        myMandelbrotGuiFrame.getZoomOutButton().addActionListener(x -> { myMandelbrot.increaseScale(); });
-        myMandelbrotGuiFrame.getMoveUpButton().addActionListener(x -> { myMandelbrot.moveUp(); });
-        myMandelbrotGuiFrame.getMoveLeftButton().addActionListener(x -> { myMandelbrot.moveLeft(); });
-        myMandelbrotGuiFrame.getMoveRightButton().addActionListener(x -> { myMandelbrot.moveRight(); });
-        myMandelbrotGuiFrame.getMoveDownButton().addActionListener(x -> { myMandelbrot.moveDown(); });
+        MoveButtonsPanel moveButtonsPanel = mandelbrotGuiFrame.getMoveButtonsPanel();
+        moveButtonsPanel.getZoomInButton().addActionListener(x -> { myMandelbrot.decreaseScale(); });
+        moveButtonsPanel.getZoomOutButton().addActionListener(x -> { myMandelbrot.increaseScale(); });
+        moveButtonsPanel.getMoveUpButton().addActionListener(x -> { myMandelbrot.moveUp(); });
+        moveButtonsPanel.getMoveLeftButton().addActionListener(x -> { myMandelbrot.moveLeft(); });
+        moveButtonsPanel.getMoveRightButton().addActionListener(x -> { myMandelbrot.moveRight(); });
+        moveButtonsPanel.getMoveDownButton().addActionListener(x -> { myMandelbrot.moveDown(); });
 
-        ColorSettingsPanel myColorSettingsPanel = myMandelbrotGuiFrame.getMyColorSettingsPanel();
+        ColorSettingsPanel myColorSettingsPanel = mandelbrotGuiFrame.getMyColorSettingsPanel();
         myColorSettingsPanel.getColorValSlider().addChangeListener(x -> { myMandelbrot.setColorOffset(myColorSettingsPanel.getColorValSlider().getValue());});
         JComboBox<String> colorModeJComboBox = myColorSettingsPanel.getColorModeBox();
         colorModeJComboBox.addActionListener(x -> {myMandelbrot.changeColorMode(colorModeJComboBox.getItemAt(colorModeJComboBox.getSelectedIndex()));});
