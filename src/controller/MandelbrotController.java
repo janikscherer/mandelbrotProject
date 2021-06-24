@@ -2,6 +2,7 @@ package controller;
 
 import IO.DataStorage;
 import model.ColorMode;
+import model.JuliaSet;
 import model.MandelbrotSet;
 import model.PositionAndSettings;
 import view.ColorSettingsPanel;
@@ -12,8 +13,8 @@ import view.MoveButtonsPanel;
 import javax.swing.*;
 
 public class MandelbrotController {
-    private int height = 1080;
-    private int width = 1080;
+    private int height = 1000;
+    private int width = 1000;
     private MandelbrotSet myMandelbrot;
     private MandelbrotGuiFrame mandelbrotGuiFrame;
     private DataStorage dataStorage;
@@ -22,12 +23,18 @@ public class MandelbrotController {
     public MandelbrotController() {
         myMandelbrot = new MandelbrotSet(height, width);
         listModel= new DefaultListModel<>();
-        mandelbrotGuiFrame = new MandelbrotGuiFrame(myMandelbrot.createAndShowGUI(), ColorMode.allColorModes());
+        mandelbrotGuiFrame = new MandelbrotGuiFrame(myMandelbrot.createAndShowGUI(), ColorMode.allColorModes(), JuliaSet.allJuliaSets());
+        mandelbrotGuiFrame.getChangeIterationsPanel().getTfIterations().setText(myMandelbrot.getMaxIterations());
         dataStorage = new DataStorage();
         initializeElements();
         initializePositionAndSettingsEntries();
     }
 
+    public int getInputTfIteration(){
+        String maxiterationsString = mandelbrotGuiFrame.getChangeIterationsPanel().getTfIterations().getText();
+        int maxiterationsInt = Integer.parseInt(maxiterationsString);
+        return maxiterationsInt;
+    }
     private void initializeElements(){
         MoveButtonsPanel moveButtonsPanel = mandelbrotGuiFrame.getMoveButtonsPanel();
         moveButtonsPanel.getZoomInButton().addActionListener(x -> { myMandelbrot.decreaseScale(); });
@@ -36,6 +43,7 @@ public class MandelbrotController {
         moveButtonsPanel.getMoveLeftButton().addActionListener(x -> { myMandelbrot.moveLeft(); });
         moveButtonsPanel.getMoveRightButton().addActionListener(x -> { myMandelbrot.moveRight(); });
         moveButtonsPanel.getMoveDownButton().addActionListener(x -> { myMandelbrot.moveDown(); });
+        mandelbrotGuiFrame.getChangeIterationsPanel().getApplyIterationsButton().addActionListener(x -> { myMandelbrot.changeIterations(getInputTfIteration()); });
 
         ColorSettingsPanel myColorSettingsPanel = mandelbrotGuiFrame.getMyColorSettingsPanel();
         myColorSettingsPanel.getColorValSlider().addChangeListener(x -> { myMandelbrot.setColorOffset(myColorSettingsPanel.getColorValSlider().getValue());});
@@ -43,9 +51,9 @@ public class MandelbrotController {
         colorModeJComboBox.addActionListener(x -> {myMandelbrot.changeColorMode(colorModeJComboBox.getItemAt(colorModeJComboBox.getSelectedIndex()));});
 
         DataStoragePanel dataStoragePanel = mandelbrotGuiFrame.getDataStoragePanel();
-
-
         dataStoragePanel.getList().setModel(listModel);
+        JComboBox<String> juliaSetJComboBox = mandelbrotGuiFrame.getJuliaSetPanel().getJuliaSetBox();
+        juliaSetJComboBox.addActionListener(x -> {myMandelbrot.changejuliaSet(juliaSetJComboBox.getItemAt(juliaSetJComboBox.getSelectedIndex()));});
 
         // save button initialization
         dataStoragePanel.getSaveButton().addActionListener(x -> {

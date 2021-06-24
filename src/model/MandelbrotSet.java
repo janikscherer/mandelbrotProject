@@ -13,15 +13,18 @@ public class MandelbrotSet {
     private float xOffset;
     private float yOffset;
 
+    private int maxIterations = 150;
+
 
     private BufferedImage mandelbrotImage;
     private ImagePanel mandelbrotPanel;
 
     private ColorEncoder myColorEncoder;
-
+    private JuliaSetCalculator juliaSetCalculator;
 
     public MandelbrotSet(int height, int width) {
         myColorEncoder = new ColorEncoder();
+        juliaSetCalculator = new JuliaSetCalculator();
         this.height = height;
         this.width = width;
         scale = 4;
@@ -52,15 +55,15 @@ public class MandelbrotSet {
         float b = yVal / height * scale - scale / 2 + yOffset;
         final float originalA = a;
         final float originalB = b;
-        int maxIterations = 150;
+
 
         int iterations = 0;
         for (; iterations < maxIterations; iterations++) {
             float newA = a * a - b * b;
             float newB = 2 * a * b;
 
-            a = newA + originalA;
-            b = newB + originalB;
+            a = newA + juliaSetCalculator.JuliaSetA(originalA);
+            b = newB + juliaSetCalculator.JuliaSetB(originalB);
 
             if (Math.abs(a + b) > Integer.MAX_VALUE) {
                 break;
@@ -73,7 +76,14 @@ public class MandelbrotSet {
             return myColorEncoder.encodeColor(iterations, maxIterations);
         }
     }
-
+    public void changejuliaSet(String juliaSet){
+        juliaSetCalculator.changeJuliaSet(juliaSet);
+        updateImage();
+    }
+    public void changeIterations(int newMaxIterations){
+        maxIterations = newMaxIterations;
+        updateImage();
+    }
     public void setColorOffset(int value){
         myColorEncoder.setColorOffset(value);
         updateImage();
@@ -153,5 +163,9 @@ public class MandelbrotSet {
     public JPanel createAndShowGUI() {
         return mandelbrotPanel;   }
 
+    public String getMaxIterations() {
+        String maxIterationsString = Integer.toString(maxIterations);
+        return maxIterationsString;
+    }
 }
 
