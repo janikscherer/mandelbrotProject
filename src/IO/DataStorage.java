@@ -14,6 +14,7 @@ public class DataStorage {
 
     public void writePositionAndSettings(PositionAndSettings positionAndSettings){
         try(PrintWriter printWriter = new PrintWriter(new FileOutputStream(new File("positionAndSettings.txt"),true));){
+            printWriter.print(positionAndSettings.getName() + delimiter);
             printWriter.print(positionAndSettings.getMyScale() + delimiter);
             printWriter.print(positionAndSettings.getMyXOffset() + delimiter);
             printWriter.print(positionAndSettings.getMyYOffset() + delimiter);
@@ -33,16 +34,40 @@ public class DataStorage {
             for(int i = 0; i<indexInList; i++){
                 scanner.nextLine();
             }
+
+            String name = scanner.next();
             float scale = scanner.nextFloat();
             float xOffset = scanner.nextFloat();
             float yOffset = scanner.nextFloat();
             ColorMode colorMode = ColorMode.colorModeFromString(scanner.next());
             int colorOffset = scanner.nextInt();
-            return new PositionAndSettings(scale, xOffset, yOffset, colorMode, colorOffset);
+            PositionAndSettings positionAndSettings = new PositionAndSettings(scale, xOffset, yOffset, colorMode, colorOffset);
+            positionAndSettings.setName(name);
+            return positionAndSettings;
         }
         catch (IOException e){
             System.out.println(e.getMessage());
         }
         return null;
+    }
+
+    public int howManyLinesWritten(){
+        try(Scanner scanner = new Scanner(new BufferedReader(new FileReader("positionAndSettings.txt")))){
+            scanner.useDelimiter(delimiter);
+            int linesInFile = 0;
+            while(true){
+                if(!scanner.hasNextLine()){
+                    return linesInFile;
+                }
+                else{
+                    linesInFile++;
+                    scanner.nextLine();
+                }
+            }
+        }
+        catch (IOException e){
+            System.out.println(e.getMessage());
+        }
+        return 0;
     }
 }

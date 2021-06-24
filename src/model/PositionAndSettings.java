@@ -6,6 +6,7 @@ public class PositionAndSettings {
     private float myYOffset;
     private ColorMode myColorMode;
     private int myColorOffset;
+    private String name;
     public PositionAndSettings(float scale, float xOffset, float yOffset, ColorMode colorMode, int colorOffset){
         myScale= scale;
         myXOffset =xOffset;
@@ -32,5 +33,13 @@ public class PositionAndSettings {
 
     public int getMyColorOffset() {
         return myColorOffset;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
     }
 }
