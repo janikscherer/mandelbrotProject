@@ -28,22 +28,19 @@ public class MandelbrotGuiFrame extends JFrame{
 
     private JPanel createSidePanel(String[] comboBoxStringColor,String[] comboBoxStringFractalSet){
         JPanel sidePanel = new JPanel();
-        JPanel comboboxPanel = new JPanel();
-
+        JPanel settingsPanel = new JPanel();
         sidePanel.setLayout(new BorderLayout());
 
-        sidePanel.add(moveButtonsPanel = new MoveButtonsPanel(), BorderLayout.CENTER);
         myColorSettingsPanel = new ColorSettingsPanel(comboBoxStringColor);
         fractalSetPanel = new FractalSetPanel(comboBoxStringFractalSet);
-        comboboxPanel.add(myColorSettingsPanel);
-        comboboxPanel.add(fractalSetPanel);
-        comboboxPanel.setLayout(new GridLayout(2,0));
-        sidePanel.add(comboboxPanel,BorderLayout.NORTH);
-
         changeIterationsPanel = new ChangeIterationsPanel();
-        sidePanel.add(changeIterationsPanel.createIterationspanel(),BorderLayout.EAST);
-
-
+        moveButtonsPanel = new MoveButtonsPanel();
+        settingsPanel.setLayout(new BorderLayout());
+        settingsPanel.add(fractalSetPanel,BorderLayout.NORTH);
+        settingsPanel.add(myColorSettingsPanel,BorderLayout.CENTER);
+        settingsPanel.add(changeIterationsPanel,BorderLayout.SOUTH);
+        sidePanel.add(settingsPanel,BorderLayout.NORTH);
+        sidePanel.add(moveButtonsPanel,BorderLayout.CENTER);
         dataStoragePanel = new DataStoragePanel();
         sidePanel.add(dataStoragePanel, BorderLayout.PAGE_END);
 
