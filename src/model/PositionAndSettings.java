@@ -1,18 +1,22 @@
 package model;
 
 public class PositionAndSettings {
+    private String name;
     private float myScale;
     private float myXOffset;
     private float myYOffset;
     private ColorMode myColorMode;
     private int myColorOffset;
-    private String name;
-    public PositionAndSettings(float scale, float xOffset, float yOffset, ColorMode colorMode, int colorOffset){
+    private int myMaxIterations;
+    private FractalSet myFractalSet;
+    public PositionAndSettings(float scale, float xOffset, float yOffset, ColorMode colorMode, int colorOffset, int maxIterations, FractalSet fractalSet){
         myScale= scale;
         myXOffset =xOffset;
         myYOffset = yOffset;
         myColorMode = colorMode;
         myColorOffset = colorOffset;
+        myMaxIterations = maxIterations;
+        myFractalSet = fractalSet;
     }
 
     public float getMyScale() {
@@ -41,5 +45,13 @@ public class PositionAndSettings {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public int getMyMaxIterations() {
+        return myMaxIterations;
+    }
+
+    public FractalSet getMyFractalSet() {
+        return myFractalSet;
     }
 }

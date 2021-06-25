@@ -55,6 +55,7 @@ public class FractalSetCalculator {
                 return originalB;
         }
     }
+
     public void changeJuliaSet(String juliaSet){
         FractalSet modeFromString = FractalSet.juliaSetFromString(juliaSet);
         if(modeFromString!=null) {
@@ -63,5 +64,10 @@ public class FractalSetCalculator {
         else{
             System.out.println("Unfortunately no matching Juliaset was found.");
         }
+
+    }
+
+    public FractalSet getCurrentSet() {
+        return currentSet;
     }
 }

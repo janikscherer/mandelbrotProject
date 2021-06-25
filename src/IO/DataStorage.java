@@ -1,6 +1,7 @@
 package IO;
 
 import model.ColorMode;
+import model.FractalSet;
 import model.PositionAndSettings;
 
 import java.io.*;
@@ -21,7 +22,8 @@ public class DataStorage {
             printWriter.print(positionAndSettings.getMyYOffset() + delimiter);
             printWriter.print(positionAndSettings.getMyColorMode() + delimiter);
             printWriter.print(positionAndSettings.getMyColorOffset() + delimiter);
-
+            printWriter.print(positionAndSettings.getMyMaxIterations() + delimiter);
+            printWriter.print(positionAndSettings.getMyFractalSet().toString() + delimiter);
             printWriter.println();
         }
         catch (IOException e){
@@ -44,7 +46,9 @@ public class DataStorage {
             float yOffset = scanner.nextFloat();
             ColorMode colorMode = ColorMode.colorModeFromString(scanner.next());
             int colorOffset = scanner.nextInt();
-            PositionAndSettings positionAndSettings = new PositionAndSettings(scale, xOffset, yOffset, colorMode, colorOffset);
+            int maxIterations = scanner.nextInt();
+            FractalSet fractalSet = FractalSet.juliaSetFromString(scanner.next());
+            PositionAndSettings positionAndSettings = new PositionAndSettings(scale, xOffset, yOffset, colorMode, colorOffset, maxIterations, fractalSet);
             positionAndSettings.setName(name);
             return positionAndSettings;
         }

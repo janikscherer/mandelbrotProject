@@ -5,10 +5,7 @@ import model.ColorMode;
 import model.FractalSet;
 import model.MandelbrotSet;
 import model.PositionAndSettings;
-import view.ColorSettingsPanel;
-import view.DataStoragePanel;
-import view.MandelbrotGuiFrame;
-import view.MoveButtonsPanel;
+import view.*;
 
 import javax.swing.*;
 
@@ -20,6 +17,7 @@ public class MandelbrotController {
     private DataStorage dataStorage;
     private DataStoragePanel dataStoragePanel;
     private ColorSettingsPanel colorSettingsPanel;
+    private FractalSetPanel fractalSetPanel;
     DefaultListModel<String> listModel;
 
     public MandelbrotController() {
@@ -44,7 +42,8 @@ public class MandelbrotController {
         dataStoragePanel = mandelbrotGuiFrame.getDataStoragePanel();
         dataStoragePanel.getList().setModel(listModel);
 
-        JComboBox<String> juliaSetJComboBox = mandelbrotGuiFrame.getJuliaSetPanel().getJuliaSetBox();
+        fractalSetPanel = mandelbrotGuiFrame.getJuliaSetPanel();
+        JComboBox<String> juliaSetJComboBox = fractalSetPanel.getJuliaSetBox();
         juliaSetJComboBox.addActionListener(x -> {myMandelbrot.changejuliaSet(juliaSetJComboBox.getItemAt(juliaSetJComboBox.getSelectedIndex()));});
 
 
@@ -59,6 +58,7 @@ public class MandelbrotController {
             myMandelbrot.loadPositionAndSettings(positionAndSettings);
             colorSettingsPanel.getColorValSlider().setValue(positionAndSettings.getMyColorOffset());
             colorSettingsPanel.getColorModeBox().setSelectedItem(positionAndSettings.getMyColorMode().toString());
+            fractalSetPanel.getJuliaSetBox().setSelectedItem(positionAndSettings.getMyFractalSet().toString());
         });
     }
 
