@@ -55,15 +55,16 @@ public class MandelbrotSet {
         float b = yVal / height * scale - scale / 2 + yOffset;
         final float originalA = a;
         final float originalB = b;
-
+        final float fractalsetA = juliaSetCalculator.JuliaSetA(originalA);
+        final float fractalsetB = juliaSetCalculator.JuliaSetB(originalB);
 
         int iterations = 0;
         for (; iterations < maxIterations; iterations++) {
             float newA = a * a - b * b;
             float newB = 2 * a * b;
 
-            a = newA + juliaSetCalculator.JuliaSetA(originalA);
-            b = newB + juliaSetCalculator.JuliaSetB(originalB);
+            a = newA + fractalsetA;
+            b = newB + fractalsetB;
 
             if (Math.abs(a + b) > Integer.MAX_VALUE) {
                 break;

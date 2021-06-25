@@ -32,7 +32,7 @@ public class DataStorage {
 
     public PositionAndSettings readPositionAndSettings(int indexInList){
         try(Scanner scanner = new Scanner(new BufferedReader(new FileReader("positionAndSettings.txt")))){
-            scanner.useLocale(Locale.ENGLISH);
+            scanner.useLocale(Locale.US);
             scanner.useDelimiter(delimiter);
             for(int i = 0; i<indexInList; i++){
                 scanner.nextLine();

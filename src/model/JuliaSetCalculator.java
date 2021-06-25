@@ -14,7 +14,6 @@ public class JuliaSetCalculator {
             case FIRSTFRACTAL:
                 return 0F;
             case SECONDFRACTAL:
-                L:
                 return 0.37F;
             case THIRDFRACTAL:
                 return 0.355F;
