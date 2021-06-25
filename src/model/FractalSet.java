@@ -4,13 +4,13 @@ import java.util.ArrayList;
 
 public enum FractalSet {
     MANDELBROT("Mandelbrot"),
-    FIRSTFRACTAL("c = 0 + 0.8i"),
-    SECONDFRACTAL("c = 0.37 + 0.1i"),
-    THIRDFRACTAL("c = 0.355 + 0.355i"),
-    FOURTHFRACTAL("c = -0.54 + 0.54i"),
-    FIFTHFRACTAL("c = -0.4 + -0.59i"),
-    SIXTHFRACTAL(" 0.34 + -0.05i"),
-    SEVENTHFRACTAL("c = -0.4 + -0.59i");
+    FIRSTFRACTAL("Julia-Set 1 => c = 0 + 0.8i"),
+    SECONDFRACTAL("Julia-Set 2 => c = 0.37 + 0.1i"),
+    THIRDFRACTAL("Julia-Set 3 => c = 0.355 + 0.355i"),
+    FOURTHFRACTAL("Julia-Set 4 => c = -0.54 + 0.54i"),
+    FIFTHFRACTAL("Julia-Set 5 => c = -0.4 + -0.59i"),
+    SIXTHFRACTAL("Julia-Set 6 => c = 0.34 + -0.05i"),
+    SEVENTHFRACTAL("Julia-Set 7 => c = -0.4 + -0.59i");
 
     private String name;
 
