@@ -20,11 +20,11 @@ public class MandelbrotSet {
     private ImagePanel mandelbrotPanel;
 
     private ColorEncoder myColorEncoder;
-    private JuliaSetCalculator juliaSetCalculator;
+    private FractalSetCalculator fractalSetCalculator;
 
     public MandelbrotSet(int height, int width) {
         myColorEncoder = new ColorEncoder();
-        juliaSetCalculator = new JuliaSetCalculator();
+        fractalSetCalculator = new FractalSetCalculator();
         this.height = height;
         this.width = width;
         scale = 4;
@@ -53,10 +53,8 @@ public class MandelbrotSet {
     public int calculateMandelbrotSet(float xVal, float yVal) {
         float a = xVal / width * scale - scale / 2 + xOffset;
         float b = yVal / height * scale - scale / 2 + yOffset;
-        final float originalA = a;
-        final float originalB = b;
-        final float fractalsetA = juliaSetCalculator.JuliaSetA(originalA);
-        final float fractalsetB = juliaSetCalculator.JuliaSetB(originalB);
+        final float fractalsetA = fractalSetCalculator.FractalSetA(a);
+        final float fractalsetB = fractalSetCalculator.FractalSetB(b);
 
         int iterations = 0;
         for (; iterations < maxIterations; iterations++) {
@@ -78,7 +76,7 @@ public class MandelbrotSet {
         }
     }
     public void changejuliaSet(String juliaSet){
-        juliaSetCalculator.changeJuliaSet(juliaSet);
+        fractalSetCalculator.changeJuliaSet(juliaSet);
         updateImage();
     }
     public void changeIterations(int newMaxIterations){

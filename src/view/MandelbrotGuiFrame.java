@@ -7,7 +7,7 @@ public class MandelbrotGuiFrame extends JFrame{
     private ColorSettingsPanel myColorSettingsPanel;
     private DataStoragePanel dataStoragePanel;
     private MoveButtonsPanel moveButtonsPanel;
-    private JuliaSetPanel juliaSetPanel;
+    private view.FractalSetPanel fractalSetPanel;
     private ChangeIterationsPanel changeIterationsPanel;
 
     public MandelbrotGuiFrame(JPanel mandelbrotPanel, String[] comboBoxStringColor,String[] comboBoxStringJuliaSet){
@@ -26,7 +26,7 @@ public class MandelbrotGuiFrame extends JFrame{
         setLocationRelativeTo(null);
     }
 
-    private JPanel createSidePanel(String[] comboBoxStringColor,String[] comboBoxStringJuliaSet){
+    private JPanel createSidePanel(String[] comboBoxStringColor,String[] comboBoxStringFractalSet){
         JPanel sidePanel = new JPanel();
         JPanel comboboxPanel = new JPanel();
 
@@ -34,9 +34,9 @@ public class MandelbrotGuiFrame extends JFrame{
 
         sidePanel.add(moveButtonsPanel = new MoveButtonsPanel(), BorderLayout.CENTER);
         myColorSettingsPanel = new ColorSettingsPanel(comboBoxStringColor);
-        juliaSetPanel = new JuliaSetPanel(comboBoxStringJuliaSet);
+        fractalSetPanel = new FractalSetPanel(comboBoxStringFractalSet);
         comboboxPanel.add(myColorSettingsPanel);
-        comboboxPanel.add(juliaSetPanel);
+        comboboxPanel.add(fractalSetPanel);
         comboboxPanel.setLayout(new GridLayout(2,0));
         sidePanel.add(comboboxPanel,BorderLayout.NORTH);
 
@@ -62,8 +62,8 @@ public class MandelbrotGuiFrame extends JFrame{
     public MoveButtonsPanel getMoveButtonsPanel(){
         return moveButtonsPanel;
     }
-    public  JuliaSetPanel getJuliaSetPanel(){
-        return  juliaSetPanel;
+    public view.FractalSetPanel getJuliaSetPanel(){
+        return fractalSetPanel;
     }
 
     public ChangeIterationsPanel getChangeIterationsPanel() {

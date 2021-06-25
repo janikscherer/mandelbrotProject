@@ -2,7 +2,7 @@ package controller;
 
 import IO.DataStorage;
 import model.ColorMode;
-import model.JuliaSet;
+import model.FractalSet;
 import model.MandelbrotSet;
 import model.PositionAndSettings;
 import view.ColorSettingsPanel;
@@ -23,7 +23,7 @@ public class MandelbrotController {
     public MandelbrotController() {
         myMandelbrot = new MandelbrotSet(height, width);
         listModel= new DefaultListModel<>();
-        mandelbrotGuiFrame = new MandelbrotGuiFrame(myMandelbrot.createAndShowGUI(), ColorMode.allColorModes(), JuliaSet.allJuliaSets());
+        mandelbrotGuiFrame = new MandelbrotGuiFrame(myMandelbrot.createAndShowGUI(), ColorMode.allColorModes(), FractalSet.allJuliaSets());
         mandelbrotGuiFrame.getChangeIterationsPanel().getTfIterations().setText(myMandelbrot.getMaxIterations());
         dataStorage = new DataStorage();
         initializeElements();

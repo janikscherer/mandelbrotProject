@@ -3,11 +3,11 @@ package view;
 import javax.swing.*;
 import java.awt.*;
 
-    public class JuliaSetPanel extends JPanel {
+    public class FractalSetPanel extends JPanel {
 
         JComboBox<String> juliaSetBox;
 
-        public JuliaSetPanel(String[] comboBoxStringJuliaSet){
+        public FractalSetPanel(String[] comboBoxStringJuliaSet){
             setLayout(new GridLayout(0, 1));
             juliaSetBox = new JComboBox<>(comboBoxStringJuliaSet);
             add(juliaSetBox);

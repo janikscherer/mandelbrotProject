@@ -1,13 +1,13 @@
 package model;
 
-public class JuliaSetCalculator {
-    private JuliaSet currentSet;
+public class FractalSetCalculator {
+    private FractalSet currentSet;
 
-    public JuliaSetCalculator() {
-        currentSet = JuliaSet.MANDELBROT;
+    public FractalSetCalculator() {
+        currentSet = FractalSet.MANDELBROT;
     }
 
-    public Float JuliaSetA(Float originalA) {
+    public Float FractalSetA(Float originalA) {
         switch (currentSet) {
             case MANDELBROT:
                 return originalA;
@@ -32,7 +32,7 @@ public class JuliaSetCalculator {
 
     }
 
-    public Float JuliaSetB(Float originalB) {
+    public Float FractalSetB(Float originalB) {
         switch (currentSet) {
             case MANDELBROT:
                 return originalB;
@@ -56,9 +56,9 @@ public class JuliaSetCalculator {
         }
     }
     public void changeJuliaSet(String juliaSet){
-        JuliaSet modeFromString = JuliaSet.juliaSetFromString(juliaSet);
+        FractalSet modeFromString = FractalSet.juliaSetFromString(juliaSet);
         if(modeFromString!=null) {
-            currentSet = JuliaSet.juliaSetFromString(juliaSet);
+            currentSet = FractalSet.juliaSetFromString(juliaSet);
         }
         else{
             System.out.println("Unfortunately no matching Juliaset was found.");
