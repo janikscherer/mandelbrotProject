@@ -17,7 +17,7 @@ public class DataStoragePanel extends JPanel {
         list = new JList<>();
         list.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
         JScrollPane listscrollpane = new JScrollPane(list);
-        listscrollpane.setPreferredSize(new Dimension(120,400));
+        listscrollpane.setPreferredSize(new Dimension(120,380));
         this.add(listscrollpane, BorderLayout.PAGE_START);
 
         JPanel buttonPanel = new JPanel();

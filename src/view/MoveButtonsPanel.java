@@ -32,18 +32,20 @@ public class MoveButtonsPanel extends JPanel {
         moveDownButton = new JButton("Move down");
         moveDownButton.setPreferredSize(new Dimension(120, 20));
 
-        myGBC.ipady = 25;
+        myGBC.ipady = 24;
         myGBC.gridx = 1;
         myGBC.gridy = 0;
+        myGBC.insets.set(2,2,2,2);
+
         add(zoomInButton, myGBC);
         myGBC.gridy++;
         add(zoomOutButton, myGBC);
 
-        myGBC.insets = new Insets(25, 0, 0, 0);
+        myGBC.insets = new Insets(20, 0, 2, 0);
         myGBC.gridy++;
         myGBC.ipady = myGBC.ipady * 2;
         add(moveUpButton, myGBC);
-        myGBC.insets = new Insets(0, 0, 0, 0);
+        myGBC.insets = new Insets(0, 0, 2, 0);
 
         myGBC.gridy++;
         myGBC.gridx = 2;

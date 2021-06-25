@@ -7,9 +7,11 @@ public class ColorSettingsPanel extends JPanel {
     private JComboBox<String> colorModeBox;
     private JSlider colorValSlider;
     public ColorSettingsPanel( String[] comboBoxString){
-        setLayout(new GridLayout(0, 1));
+        GridLayout gridLayout = new GridLayout(0,1);
+        setLayout(gridLayout);
         colorModeBox = new JComboBox<>(comboBoxString);
         add(colorModeBox);
+        gridLayout.setVgap(10);
         add(createSliderPanel());
     }
 

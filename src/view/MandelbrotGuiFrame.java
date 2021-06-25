@@ -7,7 +7,7 @@ public class MandelbrotGuiFrame extends JFrame{
     private ColorSettingsPanel myColorSettingsPanel;
     private DataStoragePanel dataStoragePanel;
     private MoveButtonsPanel moveButtonsPanel;
-    private view.FractalSetPanel fractalSetPanel;
+    private FractalSetPanel fractalSetPanel;
     private ChangeIterationsPanel changeIterationsPanel;
 
     public MandelbrotGuiFrame(JPanel mandelbrotPanel, String[] comboBoxStringColor,String[] comboBoxStringJuliaSet){

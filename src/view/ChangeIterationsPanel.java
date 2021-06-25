@@ -7,6 +7,9 @@ public class ChangeIterationsPanel extends JPanel {
     private JButton applyIterationsButton;
     private JTextField tfIterations;
     public ChangeIterationsPanel(){
+        GridLayout gridLayout = new GridLayout();
+        gridLayout.setVgap(10);
+        this.setLayout(gridLayout);
 
         applyIterationsButton = new JButton("Apply");
         JLabel lbIterations = new JLabel(" Max Iterations: ");
