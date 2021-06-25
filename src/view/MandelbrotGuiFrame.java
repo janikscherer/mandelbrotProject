@@ -27,20 +27,26 @@ public class MandelbrotGuiFrame extends JFrame{
     }
 
     private JPanel createSidePanel(String[] comboBoxStringColor,String[] comboBoxStringFractalSet){
+
         JPanel sidePanel = new JPanel();
-        JPanel settingsPanel = new JPanel();
         sidePanel.setLayout(new BorderLayout());
+
+        JPanel settingsPanel = new JPanel();
+        settingsPanel.setLayout(new BorderLayout());
 
         myColorSettingsPanel = new ColorSettingsPanel(comboBoxStringColor);
         fractalSetPanel = new FractalSetPanel(comboBoxStringFractalSet);
         changeIterationsPanel = new ChangeIterationsPanel();
-        moveButtonsPanel = new MoveButtonsPanel();
-        settingsPanel.setLayout(new BorderLayout());
+
         settingsPanel.add(fractalSetPanel,BorderLayout.NORTH);
         settingsPanel.add(myColorSettingsPanel,BorderLayout.CENTER);
         settingsPanel.add(changeIterationsPanel,BorderLayout.SOUTH);
+
         sidePanel.add(settingsPanel,BorderLayout.NORTH);
+
+        moveButtonsPanel = new MoveButtonsPanel();
         sidePanel.add(moveButtonsPanel,BorderLayout.CENTER);
+
         dataStoragePanel = new DataStoragePanel();
         sidePanel.add(dataStoragePanel, BorderLayout.PAGE_END);
 
