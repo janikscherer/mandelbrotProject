@@ -94,7 +94,7 @@ public class MandelbrotSet {
     }
 
     public PositionAndSettings getPositionAndSettings(){
-        return new PositionAndSettings(scale, xOffset, yOffset, myColorEncoder.getCurrentMode(), myColorEncoder.getColorOffset());
+        return new PositionAndSettings(scale, xOffset, yOffset, myColorEncoder.getCurrentMode(), myColorEncoder.getColorOffset(), maxIterations, fractalSetCalculator.getCurrentSet());
     }
 
     public void loadPositionAndSettings(PositionAndSettings myPositionAndSettings){

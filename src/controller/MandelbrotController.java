@@ -5,10 +5,7 @@ import model.ColorMode;
 import model.FractalSet;
 import model.MandelbrotSet;
 import model.PositionAndSettings;
-import view.ColorSettingsPanel;
-import view.DataStoragePanel;
-import view.MandelbrotGuiFrame;
-import view.MoveButtonsPanel;
+import view.*;
 
 import javax.swing.*;
 
@@ -19,6 +16,8 @@ public class MandelbrotController {
     private MandelbrotGuiFrame mandelbrotGuiFrame;
     private DataStorage dataStorage;
     private DataStoragePanel dataStoragePanel;
+    private ColorSettingsPanel colorSettingsPanel;
+    private FractalSetPanel fractalSetPanel;
     DefaultListModel<String> listModel;
 
     public MandelbrotController() {
@@ -32,9 +31,9 @@ public class MandelbrotController {
     }
 
     public int getInputTfIteration(){
-        String maxiterationsString = mandelbrotGuiFrame.getChangeIterationsPanel().getTfIterations().getText();
-        int maxiterationsInt = Integer.parseInt(maxiterationsString);
-        return maxiterationsInt;
+        String maxIterationsString = mandelbrotGuiFrame.getChangeIterationsPanel().getTfIterations().getText();
+        int maxIterationsInt = Integer.parseInt(maxIterationsString);
+        return maxIterationsInt;
     }
     private void initializeElements(){
         initializeButtons();
@@ -43,7 +42,8 @@ public class MandelbrotController {
         dataStoragePanel = mandelbrotGuiFrame.getDataStoragePanel();
         dataStoragePanel.getList().setModel(listModel);
 
-        JComboBox<String> juliaSetJComboBox = mandelbrotGuiFrame.getJuliaSetPanel().getJuliaSetBox();
+        fractalSetPanel = mandelbrotGuiFrame.getJuliaSetPanel();
+        JComboBox<String> juliaSetJComboBox = fractalSetPanel.getJuliaSetBox();
         juliaSetJComboBox.addActionListener(x -> {myMandelbrot.changejuliaSet(juliaSetJComboBox.getItemAt(juliaSetJComboBox.getSelectedIndex()));});
 
 
@@ -56,6 +56,9 @@ public class MandelbrotController {
             int index = dataStoragePanel.getList().getSelectedIndex();
             PositionAndSettings positionAndSettings = dataStorage.readPositionAndSettings(index);
             myMandelbrot.loadPositionAndSettings(positionAndSettings);
+            colorSettingsPanel.getColorValSlider().setValue(positionAndSettings.getMyColorOffset());
+            colorSettingsPanel.getColorModeBox().setSelectedItem(positionAndSettings.getMyColorMode().toString());
+            fractalSetPanel.getJuliaSetBox().setSelectedItem(positionAndSettings.getMyFractalSet().toString());
         });
     }
 
@@ -70,9 +73,9 @@ public class MandelbrotController {
     }
 
     private void initializeColorSliderAndBox() {
-        ColorSettingsPanel myColorSettingsPanel = mandelbrotGuiFrame.getMyColorSettingsPanel();
-        myColorSettingsPanel.getColorValSlider().addChangeListener(x -> { myMandelbrot.setColorOffset(myColorSettingsPanel.getColorValSlider().getValue());});
-        JComboBox<String> colorModeJComboBox = myColorSettingsPanel.getColorModeBox();
+        colorSettingsPanel = mandelbrotGuiFrame.getMyColorSettingsPanel();
+        colorSettingsPanel.getColorValSlider().addChangeListener(x -> { myMandelbrot.setColorOffset(colorSettingsPanel.getColorValSlider().getValue());});
+        JComboBox<String> colorModeJComboBox = colorSettingsPanel.getColorModeBox();
         colorModeJComboBox.addActionListener(x -> {myMandelbrot.changeColorMode(colorModeJComboBox.getItemAt(colorModeJComboBox.getSelectedIndex()));});
     }
 
