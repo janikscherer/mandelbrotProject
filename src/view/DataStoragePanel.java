@@ -24,15 +24,15 @@ public class DataStoragePanel extends JPanel {
         buttonPanel.setLayout(new FlowLayout());
 
         saveButton = new JButton("Save");
-        saveButton.setPreferredSize(new Dimension(120, 70));
+        saveButton.setPreferredSize(new Dimension(120, 45));
         buttonPanel.add(saveButton);
 
         loadButton = new JButton("Load");
-        loadButton.setPreferredSize(new Dimension(120, 70));
+        loadButton.setPreferredSize(new Dimension(120, 45));
         buttonPanel.add(loadButton);
 
         removeButton = new JButton("Remove");
-        removeButton.setPreferredSize(new Dimension(120, 70));
+        removeButton.setPreferredSize(new Dimension(120, 45));
         buttonPanel.add(removeButton);
 
         this.add(buttonPanel, BorderLayout.PAGE_START);

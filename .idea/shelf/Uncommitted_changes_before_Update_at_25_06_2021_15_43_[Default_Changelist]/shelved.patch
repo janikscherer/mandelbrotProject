@@ -1,0 +1,69 @@
+Index: src/IO/DataStorage.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package IO;\r\n\r\nimport model.ColorMode;\r\nimport model.PositionAndSettings;\r\n\r\nimport java.io.*;\r\nimport java.util.Scanner;\r\n\r\npublic class DataStorage {\r\n    private final String delimiter;\r\n    public DataStorage(){\r\n        delimiter = \";\";\r\n    }\r\n\r\n    public void writePositionAndSettings(PositionAndSettings positionAndSettings){\r\n        try(PrintWriter printWriter = new PrintWriter(new FileOutputStream(new File(\"positionAndSettings.txt\"),true));){\r\n            printWriter.print(positionAndSettings.getName() + delimiter);\r\n            printWriter.print(positionAndSettings.getMyScale() + delimiter);\r\n            printWriter.print(positionAndSettings.getMyXOffset() + delimiter);\r\n            printWriter.print(positionAndSettings.getMyYOffset() + delimiter);\r\n            printWriter.print(positionAndSettings.getMyColorMode() + delimiter);\r\n            printWriter.print(positionAndSettings.getMyColorOffset() + delimiter);\r\n            printWriter.println();\r\n        }\r\n        catch (IOException e){\r\n            System.out.println(e.getMessage());\r\n\r\n        }\r\n    }\r\n\r\n    public PositionAndSettings readPositionAndSettings(int indexInList){\r\n        try(Scanner scanner = new Scanner(new BufferedReader(new FileReader(\"positionAndSettings.txt\")))){\r\n            scanner.useDelimiter(delimiter);\r\n            for(int i = 0; i<indexInList; i++){\r\n                scanner.nextLine();\r\n            }\r\n\r\n            String name = scanner.next();\r\n            float scale = scanner.nextFloat();\r\n            float xOffset = scanner.nextFloat();\r\n            float yOffset = scanner.nextFloat();\r\n            ColorMode colorMode = ColorMode.colorModeFromString(scanner.next());\r\n            int colorOffset = scanner.nextInt();\r\n            PositionAndSettings positionAndSettings = new PositionAndSettings(scale, xOffset, yOffset, colorMode, colorOffset);\r\n            positionAndSettings.setName(name);\r\n            return positionAndSettings;\r\n        }\r\n        catch (IOException e){\r\n            System.out.println(e.getMessage());\r\n        }\r\n        return null;\r\n    }\r\n\r\n    public int howManyLinesWritten(){\r\n        try(Scanner scanner = new Scanner(new BufferedReader(new FileReader(\"positionAndSettings.txt\")))){\r\n            scanner.useDelimiter(delimiter);\r\n            int linesInFile = 0;\r\n            while(true){\r\n                if(!scanner.hasNextLine()){\r\n                    return linesInFile;\r\n                }\r\n                else{\r\n                    linesInFile++;\r\n                    scanner.nextLine();\r\n                }\r\n            }\r\n        }\r\n        catch (IOException e){\r\n            System.out.println(e.getMessage());\r\n        }\r\n        return 0;\r\n    }\r\n}\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/IO/DataStorage.java b/src/IO/DataStorage.java
+--- a/src/IO/DataStorage.java	(revision f50f54b12b35221064404b9b7b04b3da3e196ed7)
++++ b/src/IO/DataStorage.java	(date 1624630434709)
+@@ -4,6 +4,7 @@
+ import model.PositionAndSettings;
+ 
+ import java.io.*;
++import java.util.Locale;
+ import java.util.Scanner;
+ 
+ public class DataStorage {
+@@ -15,11 +16,16 @@
+     public void writePositionAndSettings(PositionAndSettings positionAndSettings){
+         try(PrintWriter printWriter = new PrintWriter(new FileOutputStream(new File("positionAndSettings.txt"),true));){
+             printWriter.print(positionAndSettings.getName() + delimiter);
+-            printWriter.print(positionAndSettings.getMyScale() + delimiter);
+-            printWriter.print(positionAndSettings.getMyXOffset() + delimiter);
+-            printWriter.print(positionAndSettings.getMyYOffset() + delimiter);
+-            printWriter.print(positionAndSettings.getMyColorMode() + delimiter);
+-            printWriter.print(positionAndSettings.getMyColorOffset() + delimiter);
++            printWriter.print(positionAndSettings.getMyScale());
++            printWriter.print(delimiter);
++            printWriter.print(positionAndSettings.getMyXOffset());
++            printWriter.print(delimiter);
++            printWriter.print(positionAndSettings.getMyYOffset());
++            printWriter.print(delimiter);
++            printWriter.print(positionAndSettings.getMyColorMode());
++            printWriter.print(delimiter);
++            printWriter.print(positionAndSettings.getMyColorOffset());
++            printWriter.print(delimiter);
+             printWriter.println();
+         }
+         catch (IOException e){
+@@ -31,6 +37,7 @@
+     public PositionAndSettings readPositionAndSettings(int indexInList){
+         try(Scanner scanner = new Scanner(new BufferedReader(new FileReader("positionAndSettings.txt")))){
+             scanner.useDelimiter(delimiter);
++            scanner.useLocale(Locale.ENGLISH);
+             for(int i = 0; i<indexInList; i++){
+                 scanner.nextLine();
+             }
+Index: src/model/MandelbrotSet.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package model;\r\n\r\nimport javax.swing.*;\r\nimport java.awt.*;\r\nimport java.awt.image.BufferedImage;\r\n\r\npublic class MandelbrotSet {\r\n\r\n    private int height;\r\n    private int width;\r\n\r\n    private float scale;\r\n    private float xOffset;\r\n    private float yOffset;\r\n\r\n    private int maxIterations = 150;\r\n\r\n\r\n    private BufferedImage mandelbrotImage;\r\n    private ImagePanel mandelbrotPanel;\r\n\r\n    private ColorEncoder myColorEncoder;\r\n    private JuliaSetCalculator juliaSetCalculator;\r\n\r\n    public MandelbrotSet(int height, int width) {\r\n        myColorEncoder = new ColorEncoder();\r\n        juliaSetCalculator = new JuliaSetCalculator();\r\n        this.height = height;\r\n        this.width = width;\r\n        scale = 4;\r\n        xOffset = 0;\r\n        yOffset = 0;\r\n        mandelbrotImage = createImage(width, height);\r\n        mandelbrotPanel = new ImagePanel(mandelbrotImage);\r\n        updateImage();\r\n    }\r\n\r\n    public BufferedImage createImage(int width, int height) {\r\n        BufferedImage image = new BufferedImage(width, height, BufferedImage.TYPE_INT_RGB);\r\n        return image;\r\n    }\r\n\r\n    private void updateImage(){\r\n        for (int x = 0; x < width; x++) {\r\n            for (int y = 0; y < height; y++) {\r\n                int color = calculateMandelbrotSet(x, y); // Calculate for each pixel\r\n                mandelbrotImage.setRGB(x, y, color);\r\n            }\r\n        }\r\n        mandelbrotPanel.updateUI();\r\n    }\r\n\r\n    public int calculateMandelbrotSet(float xVal, float yVal) {\r\n        float a = xVal / width * scale - scale / 2 + xOffset;\r\n        float b = yVal / height * scale - scale / 2 + yOffset;\r\n        final float originalA = a;\r\n        final float originalB = b;\r\n\r\n\r\n        int iterations = 0;\r\n        for (; iterations < maxIterations; iterations++) {\r\n            float newA = a * a - b * b;\r\n            float newB = 2 * a * b;\r\n\r\n            a = newA + juliaSetCalculator.JuliaSetA(originalA);\r\n            b = newB + juliaSetCalculator.JuliaSetB(originalB);\r\n\r\n            if (Math.abs(a + b) > Integer.MAX_VALUE) {\r\n                break;\r\n            }\r\n        }\r\n\r\n        if (iterations == maxIterations) {\r\n            return 0;\r\n        } else {\r\n            return myColorEncoder.encodeColor(iterations, maxIterations);\r\n        }\r\n    }\r\n    public void changejuliaSet(String juliaSet){\r\n        juliaSetCalculator.changeJuliaSet(juliaSet);\r\n        updateImage();\r\n    }\r\n    public void changeIterations(int newMaxIterations){\r\n        maxIterations = newMaxIterations;\r\n        updateImage();\r\n    }\r\n    public void setColorOffset(int value){\r\n        myColorEncoder.setColorOffset(value);\r\n        updateImage();\r\n    }\r\n\r\n    public void changeColorMode(String colorMode){\r\n        myColorEncoder.changeColorMode(colorMode);\r\n        updateImage();\r\n    }\r\n\r\n    public PositionAndSettings getPositionAndSettings(){\r\n        return new PositionAndSettings(scale, xOffset, yOffset, myColorEncoder.getCurrentMode(), myColorEncoder.getColorOffset());\r\n    }\r\n\r\n    public void loadPositionAndSettings(PositionAndSettings myPositionAndSettings){\r\n        scale = myPositionAndSettings.getMyScale();\r\n        xOffset = myPositionAndSettings.getMyXOffset();\r\n        yOffset = myPositionAndSettings.getMyYOffset();\r\n        myColorEncoder.setCurrentMode(myPositionAndSettings.getMyColorMode());\r\n        myColorEncoder.setColorOffset(myPositionAndSettings.getMyColorOffset());\r\n        updateImage();\r\n    }\r\n\r\n\r\n    static class ImagePanel extends JPanel {\r\n        private final BufferedImage image;\r\n\r\n        ImagePanel(BufferedImage image) {\r\n            this.image = image;\r\n        }\r\n\r\n        @Override\r\n        public Dimension getPreferredSize() {\r\n            if (super.isPreferredSizeSet()) {\r\n                return super.getPreferredSize();\r\n            }\r\n            return new Dimension(image.getWidth(), image.getHeight()); //encapsulates the width and height of a component (in integer precision) in a single object\r\n        }\r\n\r\n        @Override\r\n        protected void paintComponent(Graphics g) {\r\n            super.paintComponent(g);\r\n            g.drawImage(image, 0, 0, null);\r\n        }\r\n    }\r\n\r\n    public void decreaseScale(){\r\n        scale=scale/2;\r\n        updateImage();\r\n    }\r\n\r\n    public void increaseScale(){\r\n        scale=scale*2;\r\n        updateImage();\r\n    }\r\n\r\n    public void moveRight(){\r\n        xOffset += scale/8;\r\n        updateImage();\r\n    }\r\n\r\n    public void moveLeft(){\r\n        xOffset -= scale/8;\r\n        updateImage();\r\n    }\r\n\r\n    public void moveUp(){\r\n        yOffset -= scale/8;\r\n        updateImage();\r\n    }\r\n\r\n    public void moveDown(){\r\n        yOffset += scale/8;\r\n        updateImage();\r\n    }\r\n\r\n    public JPanel createAndShowGUI() {\r\n        return mandelbrotPanel;   }\r\n\r\n    public String getMaxIterations() {\r\n        String maxIterationsString = Integer.toString(maxIterations);\r\n        return maxIterationsString;\r\n    }\r\n}\r\n\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/model/MandelbrotSet.java b/src/model/MandelbrotSet.java
+--- a/src/model/MandelbrotSet.java	(revision f50f54b12b35221064404b9b7b04b3da3e196ed7)
++++ b/src/model/MandelbrotSet.java	(date 1624631379799)
+@@ -62,8 +62,8 @@
+             float newA = a * a - b * b;
+             float newB = 2 * a * b;
+ 
+-            a = newA + juliaSetCalculator.JuliaSetA(originalA);
+-            b = newB + juliaSetCalculator.JuliaSetB(originalB);
++            a = newA + -0.8F; //juliaSetCalculator.JuliaSetA(originalA) ;
++            b = newB + originalB; //juliaSetCalculator.JuliaSetB(originalB);
+ 
+             if (Math.abs(a + b) > Integer.MAX_VALUE) {
+                 break;
