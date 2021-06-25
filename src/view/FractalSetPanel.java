@@ -11,7 +11,7 @@ import java.awt.*;
             setLayout(new GridLayout(0, 1));
             juliaSetBox = new JComboBox<>(comboBoxStringJuliaSet);
             add(juliaSetBox);
-            juliaSetBox.setPreferredSize(new Dimension(200,20));
+            juliaSetBox.setPreferredSize(new Dimension(200,45));
 
 
         }

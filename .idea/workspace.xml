@@ -1,9 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="0b4f817e-d4f6-44f6-aacc-663b2a7acef4" name="Default Changelist" comment="changed class and variable names from Julia to Fractal">
-      <change beforePath="$PROJECT_DIR$/src/view/ChangeIterationsPanel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/ChangeIterationsPanel.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/view/MandelbrotGuiFrame.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/MandelbrotGuiFrame.java" afterDir="false" />
+    <list default="true" id="0b4f817e-d4f6-44f6-aacc-663b2a7acef4" name="Default Changelist" comment="Better GUI Design">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/mandelbrotProject/IO/DataStorage.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/mandelbrotProject/IO/DataStorage.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/mandelbrotProject/controller/MandelbrotController.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/mandelbrotProject/controller/MandelbrotController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/mandelbrotProject/model/FractalSetCalculator.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/mandelbrotProject/model/FractalSetCalculator.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/mandelbrotProject/model/MandelbrotSet.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/mandelbrotProject/model/MandelbrotSet.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/mandelbrotProject/model/PositionAndSettings.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/mandelbrotProject/model/PositionAndSettings.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/mandelbrotProject/view/ColorSettingsPanel.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/mandelbrotProject/view/ColorSettingsPanel.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/mandelbrotProject/view/FractalSetPanel.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/mandelbrotProject/view/FractalSetPanel.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/view/FractalSetPanel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/FractalSetPanel.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -79,7 +86,7 @@
       <option name="presentableId" value="Default" />
       <updated>1624523595806</updated>
       <workItem from="1624523597428" duration="4515000" />
-      <workItem from="1624628508480" duration="7078000" />
+      <workItem from="1624628508480" duration="7695000" />
     </task>
     <task id="LOCAL-00001" summary="Added JuliaSet and Change Iterations on the fly">
       <created>1624528033892</created>
@@ -109,7 +116,14 @@
       <option name="project" value="LOCAL" />
       <updated>1624634281376</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="Better GUI Design">
+      <created>1624636162089</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1624636162089</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -131,6 +145,7 @@
     <MESSAGE value="Added JuliaSet and Change Iterations on the fly" />
     <MESSAGE value="performanceboost for juliaset" />
     <MESSAGE value="changed class and variable names from Julia to Fractal" />
-    <option name="LAST_COMMIT_MESSAGE" value="changed class and variable names from Julia to Fractal" />
+    <MESSAGE value="Better GUI Design" />
+    <option name="LAST_COMMIT_MESSAGE" value="Better GUI Design" />
   </component>
 </project>
