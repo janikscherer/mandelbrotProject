@@ -5,24 +5,18 @@ import java.awt.*;
 
     public class FractalSetPanel extends JPanel {
 
-        JComboBox<String> juliaSetBox;
+        JComboBox<String> fractalSetBox;
 
         public FractalSetPanel(String[] comboBoxStringJuliaSet){
             setLayout(new GridLayout(0, 1));
-            juliaSetBox = new JComboBox<>(comboBoxStringJuliaSet);
-            add(juliaSetBox);
-            juliaSetBox.setPreferredSize(new Dimension(200,20));
-
-
+            fractalSetBox = new JComboBox<>(comboBoxStringJuliaSet);
+            fractalSetBox.setPreferredSize(new Dimension(240, 40));
+            add(fractalSetBox);
         }
 
-
-
-
-
-        public JComboBox<String> getJuliaSetBox() {
-            return juliaSetBox;
+        public JComboBox<String> getFractalSetBox() {
+            return fractalSetBox;
         }
-    }
+}
 
 

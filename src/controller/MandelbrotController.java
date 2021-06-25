@@ -39,7 +39,7 @@ public class MandelbrotController {
 
         initializeChangeIterationsPanel();
         fractalSetPanel = mandelbrotGuiFrame.getJuliaSetPanel();
-        JComboBox<String> juliaSetJComboBox = fractalSetPanel.getJuliaSetBox();
+        JComboBox<String> juliaSetJComboBox = fractalSetPanel.getFractalSetBox();
         juliaSetJComboBox.addActionListener(x -> {myMandelbrot.changejuliaSet(juliaSetJComboBox.getItemAt(juliaSetJComboBox.getSelectedIndex()));});
 
 
@@ -59,7 +59,7 @@ public class MandelbrotController {
             myMandelbrot.loadPositionAndSettings(positionAndSettings);
             colorSettingsPanel.getColorValSlider().setValue(positionAndSettings.getMyColorOffset());
             colorSettingsPanel.getColorModeBox().setSelectedItem(positionAndSettings.getMyColorMode().toString());
-            fractalSetPanel.getJuliaSetBox().setSelectedItem(positionAndSettings.getMyFractalSet().toString());
+            fractalSetPanel.getFractalSetBox().setSelectedItem(positionAndSettings.getMyFractalSet().toString());
         });
     }
 
