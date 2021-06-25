@@ -18,6 +18,7 @@ public class MandelbrotController {
     private MandelbrotSet myMandelbrot;
     private MandelbrotGuiFrame mandelbrotGuiFrame;
     private DataStorage dataStorage;
+    private DataStoragePanel dataStoragePanel;
     DefaultListModel<String> listModel;
 
     public MandelbrotController() {
@@ -36,6 +37,46 @@ public class MandelbrotController {
         return maxiterationsInt;
     }
     private void initializeElements(){
+        initializeButtons();
+        initializeColorSliderAndBox();
+
+        dataStoragePanel = mandelbrotGuiFrame.getDataStoragePanel();
+        dataStoragePanel.getList().setModel(listModel);
+
+        JComboBox<String> juliaSetJComboBox = mandelbrotGuiFrame.getJuliaSetPanel().getJuliaSetBox();
+        juliaSetJComboBox.addActionListener(x -> {myMandelbrot.changejuliaSet(juliaSetJComboBox.getItemAt(juliaSetJComboBox.getSelectedIndex()));});
+
+
+        initializeSaveButton();
+        initializeLoadButton();
+    }
+
+    private void initializeLoadButton() {
+        dataStoragePanel.getLoadButton().addActionListener(x ->{
+            int index = dataStoragePanel.getList().getSelectedIndex();
+            PositionAndSettings positionAndSettings = dataStorage.readPositionAndSettings(index);
+            myMandelbrot.loadPositionAndSettings(positionAndSettings);
+        });
+    }
+
+    private void initializeSaveButton() {
+        dataStoragePanel.getSaveButton().addActionListener(x -> {
+            String nameForPositionAndSettings = JOptionPane.showInputDialog(mandelbrotGuiFrame,"Enter Name");
+            PositionAndSettings positionAndSettings = myMandelbrot.getPositionAndSettings();
+            positionAndSettings.setName(nameForPositionAndSettings);
+            dataStorage.writePositionAndSettings(positionAndSettings);
+            listModel.addElement(nameForPositionAndSettings);
+        });
+    }
+
+    private void initializeColorSliderAndBox() {
+        ColorSettingsPanel myColorSettingsPanel = mandelbrotGuiFrame.getMyColorSettingsPanel();
+        myColorSettingsPanel.getColorValSlider().addChangeListener(x -> { myMandelbrot.setColorOffset(myColorSettingsPanel.getColorValSlider().getValue());});
+        JComboBox<String> colorModeJComboBox = myColorSettingsPanel.getColorModeBox();
+        colorModeJComboBox.addActionListener(x -> {myMandelbrot.changeColorMode(colorModeJComboBox.getItemAt(colorModeJComboBox.getSelectedIndex()));});
+    }
+
+    private void initializeButtons() {
         MoveButtonsPanel moveButtonsPanel = mandelbrotGuiFrame.getMoveButtonsPanel();
         moveButtonsPanel.getZoomInButton().addActionListener(x -> { myMandelbrot.decreaseScale(); });
         moveButtonsPanel.getZoomOutButton().addActionListener(x -> { myMandelbrot.increaseScale(); });
@@ -44,33 +85,8 @@ public class MandelbrotController {
         moveButtonsPanel.getMoveRightButton().addActionListener(x -> { myMandelbrot.moveRight(); });
         moveButtonsPanel.getMoveDownButton().addActionListener(x -> { myMandelbrot.moveDown(); });
         mandelbrotGuiFrame.getChangeIterationsPanel().getApplyIterationsButton().addActionListener(x -> { myMandelbrot.changeIterations(getInputTfIteration()); });
-
-        ColorSettingsPanel myColorSettingsPanel = mandelbrotGuiFrame.getMyColorSettingsPanel();
-        myColorSettingsPanel.getColorValSlider().addChangeListener(x -> { myMandelbrot.setColorOffset(myColorSettingsPanel.getColorValSlider().getValue());});
-        JComboBox<String> colorModeJComboBox = myColorSettingsPanel.getColorModeBox();
-        colorModeJComboBox.addActionListener(x -> {myMandelbrot.changeColorMode(colorModeJComboBox.getItemAt(colorModeJComboBox.getSelectedIndex()));});
-
-        DataStoragePanel dataStoragePanel = mandelbrotGuiFrame.getDataStoragePanel();
-        dataStoragePanel.getList().setModel(listModel);
-        JComboBox<String> juliaSetJComboBox = mandelbrotGuiFrame.getJuliaSetPanel().getJuliaSetBox();
-        juliaSetJComboBox.addActionListener(x -> {myMandelbrot.changejuliaSet(juliaSetJComboBox.getItemAt(juliaSetJComboBox.getSelectedIndex()));});
-
-        // save button initialization
-        dataStoragePanel.getSaveButton().addActionListener(x -> {
-            String nameForPositionAndSettings = JOptionPane.showInputDialog(mandelbrotGuiFrame,"Enter Name");
-            PositionAndSettings positionAndSettings = myMandelbrot.getPositionAndSettings();
-            positionAndSettings.setName(nameForPositionAndSettings);
-            dataStorage.writePositionAndSettings(positionAndSettings);
-            listModel.addElement(nameForPositionAndSettings);
-        });
-
-        // load button initialization
-        dataStoragePanel.getLoadButton().addActionListener(x ->{
-            int index = dataStoragePanel.getList().getSelectedIndex();
-            PositionAndSettings positionAndSettings = dataStorage.readPositionAndSettings(index);
-            myMandelbrot.loadPositionAndSettings(positionAndSettings);
-        });
     }
+
     public void initializePositionAndSettingsEntries(){
         for(int line = 0; line < dataStorage.howManyLinesWritten(); line++){
             PositionAndSettings positionAndSettings = dataStorage.readPositionAndSettings(line);
