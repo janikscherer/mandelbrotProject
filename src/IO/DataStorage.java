@@ -4,6 +4,7 @@ import model.ColorMode;
 import model.PositionAndSettings;
 
 import java.io.*;
+import java.util.Locale;
 import java.util.Scanner;
 
 public class DataStorage {
@@ -20,6 +21,7 @@ public class DataStorage {
             printWriter.print(positionAndSettings.getMyYOffset() + delimiter);
             printWriter.print(positionAndSettings.getMyColorMode() + delimiter);
             printWriter.print(positionAndSettings.getMyColorOffset() + delimiter);
+
             printWriter.println();
         }
         catch (IOException e){
@@ -30,6 +32,7 @@ public class DataStorage {
 
     public PositionAndSettings readPositionAndSettings(int indexInList){
         try(Scanner scanner = new Scanner(new BufferedReader(new FileReader("positionAndSettings.txt")))){
+            scanner.useLocale(Locale.ENGLISH);
             scanner.useDelimiter(delimiter);
             for(int i = 0; i<indexInList; i++){
                 scanner.nextLine();
