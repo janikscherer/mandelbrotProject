@@ -18,23 +18,18 @@ public class MandelbrotController {
     private DataStoragePanel dataStoragePanel;
     private ColorSettingsPanel colorSettingsPanel;
     private FractalSetPanel fractalSetPanel;
+    private ChangeIterationsPanel changeIterationsPanel;
     DefaultListModel<String> listModel;
 
     public MandelbrotController() {
         myMandelbrot = new MandelbrotSet(height, width);
         listModel= new DefaultListModel<>();
         mandelbrotGuiFrame = new MandelbrotGuiFrame(myMandelbrot.createAndShowGUI(), ColorMode.allColorModes(), FractalSet.allJuliaSets());
-        mandelbrotGuiFrame.getChangeIterationsPanel().getTfIterations().setText(myMandelbrot.getMaxIterations());
         dataStorage = new DataStorage();
         initializeElements();
         initializePositionAndSettingsEntries();
     }
 
-    public int getInputTfIteration(){
-        String maxIterationsString = mandelbrotGuiFrame.getChangeIterationsPanel().getTfIterations().getText();
-        int maxIterationsInt = Integer.parseInt(maxIterationsString);
-        return maxIterationsInt;
-    }
     private void initializeElements(){
         initializeButtons();
         initializeColorSliderAndBox();
@@ -42,6 +37,7 @@ public class MandelbrotController {
         dataStoragePanel = mandelbrotGuiFrame.getDataStoragePanel();
         dataStoragePanel.getList().setModel(listModel);
 
+        initializeChangeIterationsPanel();
         fractalSetPanel = mandelbrotGuiFrame.getJuliaSetPanel();
         JComboBox<String> juliaSetJComboBox = fractalSetPanel.getJuliaSetBox();
         juliaSetJComboBox.addActionListener(x -> {myMandelbrot.changejuliaSet(juliaSetJComboBox.getItemAt(juliaSetJComboBox.getSelectedIndex()));});
@@ -49,6 +45,11 @@ public class MandelbrotController {
 
         initializeSaveButton();
         initializeLoadButton();
+    }
+
+    private void initializeChangeIterationsPanel() {
+        changeIterationsPanel = mandelbrotGuiFrame.getChangeIterationsPanel();
+        changeIterationsPanel.getTfIterations().setText(myMandelbrot.getMaxIterations());
     }
 
     private void initializeLoadButton() {
@@ -69,6 +70,7 @@ public class MandelbrotController {
             positionAndSettings.setName(nameForPositionAndSettings);
             dataStorage.writePositionAndSettings(positionAndSettings);
             listModel.addElement(nameForPositionAndSettings);
+
         });
     }
 
@@ -95,5 +97,11 @@ public class MandelbrotController {
             PositionAndSettings positionAndSettings = dataStorage.readPositionAndSettings(line);
             listModel.addElement(positionAndSettings.getName());
         }
+    }
+
+    private int getInputTfIteration(){
+        String maxIterationsString = changeIterationsPanel.getTfIterations().getText();
+        int maxIterationsInt = Integer.parseInt(maxIterationsString);
+        return maxIterationsInt;
     }
 }

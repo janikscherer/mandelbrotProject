@@ -103,6 +103,8 @@ public class MandelbrotSet {
         yOffset = myPositionAndSettings.getMyYOffset();
         myColorEncoder.setCurrentMode(myPositionAndSettings.getMyColorMode());
         myColorEncoder.setColorOffset(myPositionAndSettings.getMyColorOffset());
+        maxIterations = myPositionAndSettings.getMyMaxIterations();
+        fractalSetCalculator.changeJuliaSet(myPositionAndSettings.getMyFractalSet().toString());
         updateImage();
     }
 
