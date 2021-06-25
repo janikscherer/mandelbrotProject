@@ -4,8 +4,8 @@ import javax.swing.*;
 import java.awt.*;
 
 public class ColorSettingsPanel extends JPanel {
-    JComboBox<String> colorModeBox;
-    JSlider colorValSlider;
+    private JComboBox<String> colorModeBox;
+    private JSlider colorValSlider;
     public ColorSettingsPanel( String[] comboBoxString){
         setLayout(new GridLayout(0, 1));
         colorModeBox = new JComboBox<>(comboBoxString);
@@ -28,6 +28,8 @@ public class ColorSettingsPanel extends JPanel {
     public JSlider getColorValSlider() {
         return colorValSlider;
     }
+
+
 
 
 }
