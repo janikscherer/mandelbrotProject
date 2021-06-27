@@ -59,7 +59,7 @@ public class DataStorage {
     }
 
     public void removeLine(int index){
-        File newFile;
+        File newFile = null;
         try(Scanner scanner = new Scanner(new BufferedReader(new FileReader("positionAndSettings.txt")));
             PrintWriter printWriter = new PrintWriter(new FileOutputStream(newFile =new File("newPositionAndSettings.txt")));){
             int line = 0;
@@ -72,14 +72,13 @@ public class DataStorage {
                 }
                 line++;
             }
-            File oldFile = new File("positionAndSettings.txt");
-            oldFile.delete();
-            newFile.renameTo(new File("positionAndSettings.txt"));
         }
         catch (IOException e){
             System.out.println(e.getMessage());
-
         }
+        File oldFile = new File("positionAndSettings.txt");
+        oldFile.delete();
+        newFile.renameTo(new File("positionAndSettings.txt"));
     }
 
     public int howManyLinesWritten(){
