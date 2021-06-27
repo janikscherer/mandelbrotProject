@@ -61,6 +61,7 @@ public class MandelbrotController {
             colorSettingsPanel.getColorValSlider().setValue(positionAndSettings.getMyColorOffset());
             colorSettingsPanel.getColorModeBox().setSelectedItem(positionAndSettings.getMyColorMode().toString());
             fractalSetPanel.getFractalSetBox().setSelectedItem(positionAndSettings.getMyFractalSet().toString());
+            changeIterationsPanel.getTfIterations().setText("" + positionAndSettings.getMyMaxIterations());
         });
     }
 

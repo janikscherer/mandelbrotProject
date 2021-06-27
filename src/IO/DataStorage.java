@@ -72,6 +72,8 @@ public class DataStorage {
                 }
                 line++;
             }
+            File oldFile = new File("positionAndSettings.txt");
+            oldFile.delete();
             newFile.renameTo(new File("positionAndSettings.txt"));
         }
         catch (IOException e){
