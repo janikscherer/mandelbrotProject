@@ -45,6 +45,7 @@ public class MandelbrotController {
 
         initializeSaveButton();
         initializeLoadButton();
+        initializeRemoveButton();
     }
 
     private void initializeChangeIterationsPanel() {
@@ -71,6 +72,14 @@ public class MandelbrotController {
             dataStorage.writePositionAndSettings(positionAndSettings);
             listModel.addElement(nameForPositionAndSettings);
 
+        });
+    }
+
+    private void initializeRemoveButton(){
+        dataStoragePanel.getRemoveButton().addActionListener(x -> {
+            int index = dataStoragePanel.getList().getSelectedIndex();
+            dataStorage.removeLine(index);
+            listModel.remove(index);
         });
     }
 

@@ -58,6 +58,28 @@ public class DataStorage {
         return null;
     }
 
+    public void removeLine(int index){
+        File newFile;
+        try(Scanner scanner = new Scanner(new BufferedReader(new FileReader("positionAndSettings.txt")));
+            PrintWriter printWriter = new PrintWriter(new FileOutputStream(newFile =new File("newPositionAndSettings.txt")));){
+            int line = 0;
+            while(scanner.hasNextLine()){
+                if(line!=index) {
+                    printWriter.println(scanner.nextLine());
+                }
+                else{
+                    scanner.nextLine();
+                }
+                line++;
+            }
+            newFile.renameTo(new File("positionAndSettings.txt"));
+        }
+        catch (IOException e){
+            System.out.println(e.getMessage());
+
+        }
+    }
+
     public int howManyLinesWritten(){
         try(Scanner scanner = new Scanner(new BufferedReader(new FileReader("positionAndSettings.txt")))){
             scanner.useDelimiter(delimiter);
