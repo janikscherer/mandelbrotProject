@@ -35,21 +35,19 @@ public class ColorEncoder {
         }
     }
 
-    public int encodeColorHsbLinear(int iterations, int maxIterations){
+    private int encodeColorHsbLinear(int iterations, int maxIterations){
         double color = 1.0*iterations/maxIterations;
         color += colorOffset/255.0;
-        Color myColor = Color.getHSBColor((float) (color), 1, 1);
-        return myColor.getRGB();
+        return Color.HSBtoRGB((float) color, 1, 1);
     }
 
-    public int encodeColorHsbLogarithmic(int iterations, int maxIterations){
-        double color = Math.log(iterations)/Math.log(maxIterations); // Needs some improvement!
+    private int encodeColorHsbLogarithmic(int iterations, int maxIterations){
+        double color = Math.log(iterations)/Math.log(maxIterations);
         color += colorOffset/255.0;
-        Color myColor = Color.getHSBColor((float) (color), 1, 1);
-        return myColor.getRGB();
+        return Color.HSBtoRGB((float) color, 1, 1);
     }
 
-    public int encodeColorRGB(int iterations, int maxIterations){
+    private int encodeColorRGB(int iterations, int maxIterations){
         return ((iterations) * (16777215 / maxIterations*(colorOffset+1)));
     }
 
