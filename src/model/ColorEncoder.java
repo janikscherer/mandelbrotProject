@@ -36,15 +36,15 @@ public class ColorEncoder {
     }
 
     private int encodeColorHsbLinear(int iterations, int maxIterations){
-        double color = 1.0*iterations/maxIterations;
+        float color = 1.0f*iterations/maxIterations;
         color += colorOffset/255.0;
         return Color.HSBtoRGB((float) color, 1, 1);
     }
 
     private int encodeColorHsbLogarithmic(int iterations, int maxIterations){
-        double color = Math.log(iterations)/Math.log(maxIterations);
+        float color = (float) (Math.log(iterations)/Math.log(maxIterations));
         color += colorOffset/255.0;
-        return Color.HSBtoRGB((float) color, 1, 1);
+        return Color.HSBtoRGB(color, 1, 1);
     }
 
     private int encodeColorRGB(int iterations, int maxIterations){
